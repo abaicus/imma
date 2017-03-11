@@ -258,11 +258,11 @@ html, body { height: 100%; font-family: “Segoe UI”, sans-serif;}
 }
 
 .stat-col i:after {
-    border-top: 1px solid;
+    border-top: 2px solid;
     margin: 25px auto;
     display: block;
     content: " ";
-    width: 50%;
+    width: 15%;
 }
 
 /* Blog */
