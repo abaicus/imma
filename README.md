@@ -1,4 +1,4 @@
 # imma
 
-node-sass --watch sass/main.sass test.css
+node-sass --source-map true --watch sass/main.sass test.css
 
