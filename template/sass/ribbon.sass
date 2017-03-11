@@ -1,0 +1,44 @@
+.ribbon .btn
+  margin-top: 35px
+
+.ribbon
+  position: relative
+  background: url('img/ribbon.jpg') no-repeat center
+  background-attachment: fixed
+  background-size: cover
+  color: white
+  text-align: center
+
+.ribbon:after
+  background-color: rgba(0,0,0,0.6)
+  top: 0
+  bottom: 0
+  left: 0
+  right: 0
+  content: ""
+  position: absolute
+
+.ribbon h2
+  text-align: center
+  margin: 0
+  font-weight: 300
+
+.ribbon .container
+  z-index: 1
+  position: relative
+
+.ribbon .btn
+  letter-spacing: .1em
+
+@media (min-width: 1200px)
+  .ribbon .btn
+    margin-top: 0
+
+  .ribbon .row
+    display: table
+    width: 100%
+
+  .ribbon .row > div
+    display: table-cell
+    vertical-align: middle
+    float: none

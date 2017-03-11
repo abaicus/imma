@@ -1,0 +1,38 @@
+.blog
+  img
+    max-width: 100%
+
+  .blog-post
+    display: table
+    margin-bottom: 35px
+
+  .blog-post-content
+    float: none
+    display: table-footer-group
+
+  .blog-post-image
+    margin-bottom: 35px
+    display: table-header-group
+    padding: 0
+
+  .post-title
+    font-weight: 300
+    line-height: 45px
+    margin-bottom: 50px
+    color: #666
+
+  .text-content
+    color: #888
+    margin-bottom: 50px
+
+@media ( min-width: 992px )
+  .blog
+    .blog-post, .blog-post-image, .blog-post-content
+      display: block
+    .blog-post-content
+      float: left
+    .blog-post-image
+      padding-left: 15px
+      padding-right: 15px
+    .blog-post
+      margin-bottom: 100px

@@ -16,3 +16,19 @@ $cardPadding : 1.25rem
   line-height: 60px
   width: 60px
   color: $accentColor
+
+.features i:after
+  transition: all .3s ease
+  content: " "
+  border: 1px solid #efefef
+  display: block
+
+
+.features .card:hover > i:after
+  border: 1px solid $accentColor
+
+.features .card-title
+  margin: 25px 0
+
+.features .card-text
+  margin-bottom: 25px
