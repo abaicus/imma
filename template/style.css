@@ -1,0 +1,307 @@
+/* General */
+
+* {
+    transition: all .3s ease;
+}
+
+html, body { height: 100%; font-family: “Segoe UI”, sans-serif;}
+
+.features, .ribbon, .product, .portfolio, .stats, .blog, .clients {
+    padding: 100px 0 ;    
+}
+
+.section-subtitle {
+    margin-bottom: 80px;
+}
+
+.row-flex {
+    display: flex;
+    align-items: center;
+}
+
+.container-half {
+    position: absolute;
+    vertical-align: middle;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+}
+
+.container-half-left {
+    left: 0;
+    background-position: top left;
+}
+
+.container-half-right {
+    right: 0;
+    background-position: top right;
+}
+
+.product {
+    position: relative;
+}
+
+.btn {
+    border-radius: 0;
+}
+/* Cover */
+
+#cover {
+    background: url('img/cover.jpg') no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+#cover:after {
+    background-color: rgba(0,0,0,0.6);
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    content: "";
+    position: absolute;
+}
+
+#cover-caption {
+    width: 100%;
+    z-index:1;
+}
+
+.bg-inverse {
+    background-color: rgba(0,0,0,0.75) !important;
+}
+
+/* Features */
+
+.features i {
+    line-height: 60px;
+    width: 60px;
+}
+
+.features i:after {
+    transition: all .3s ease;
+    content: " ";
+    border: 1px solid #efefef;
+    display: block;
+}
+
+.features .card:hover > i:after {
+    border: 1px solid #f0ad4e;
+}
+
+.features .card-title {
+    margin: 25px 0;
+}
+
+.features .card-text {
+    margin-bottom: 25px;
+}
+
+/* Ribbon */
+
+.ribbon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: url('img/ribbon.jpg') no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+    color: white;
+    text-align: center;
+}
+
+.ribbon:after {
+    background-color: rgba(0,0,0,0.6);
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    content: "";
+    position: absolute;
+}
+
+.ribbon h2 {
+    text-align: center;
+    margin:0;
+    font-weight: 300;
+}
+
+.ribbon .container {
+    z-index: 1;
+}
+
+.ribbon .btn {
+    letter-spacing: .1em;
+}
+
+/* Product */
+
+.product {
+    color: #888;
+}
+
+.product .container-half-right {
+    background: url('img/product.jpg') no-repeat center;
+    background-size:cover;
+}
+
+.product .lead {
+    margin-bottom: 25px;
+    font-size:1.6em;
+}
+
+.text-content {
+    font-weight: 100;
+    line-height: 2em;
+}
+
+.product p:last-child {
+    margin-bottom: 0;
+}
+
+/* portfolio */
+
+.portfolio img {
+    max-width:100%;
+}
+
+.portfolio .card-img-overlay {
+    opacity: 0;
+    background: rgba(0,0,0,0.7);
+}
+
+.portfolio .card-caption-wrapper {
+    bottom: 40%;
+    top: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.portfolio .card {
+    overflow: hidden;
+}
+
+.portfolio .card:hover > img {
+    transform: scale(1.1);
+}
+
+.portfolio .card:hover > .card-img-overlay {
+    opacity: 1;
+}
+
+/* Stats */
+
+.stats {
+    position: relative;
+    background: url('img/stats.jpg') no-repeat top;
+    background-attachment: fixed;
+    background-size: cover;
+    color: white;
+    text-align: center;
+}
+
+.stats:before {
+    background-color: rgba(0,0,0,0.6);
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    content: "";
+    position: absolute;
+    z-index: 0;
+}
+
+.stats .container {
+    z-index: 1;
+}
+
+.stat-col i,
+.stat-col .counter,
+.stat-col .stat-title {
+    display: block;
+}
+
+.stat-col {
+    text-align: center;
+}
+
+.stats i {
+    font-size: 2em;
+    color: #fff;
+}
+
+.stats .counter {
+    font-size: 1.5em;
+}
+
+.stats .stat-title {
+    font-size: 1.2em;
+}
+
+.stat-col:nth-child(2n+1) > i {
+    color: #ea2e49;
+}
+.stat-col:nth-child(2n+2) > i {
+    color: #daede2;
+}
+.stat-col:nth-child(2n+3) > i {
+    color: #77c4d3;
+}
+.stat-col:nth-child(2n+4) > i {
+    color: #f6f792;
+}
+
+.stat-col i:after {
+    border-top: 1px solid;
+    margin: 25px auto;
+    display: block;
+    content: " ";
+    width: 50%;
+}
+
+/* Blog */
+.blog img {
+    max-width: 100%;
+}
+
+.blog .blog-post {
+    margin-bottom: 100px;
+}
+
+.blog .row:last-child {
+    margin-bottom: 0;
+}
+
+.blog .post-title {
+    font-weight: 300;
+    line-height: 45px;
+    margin-bottom: 50px;
+    color: #666;
+}
+
+.blog .text-content {
+    color: #888;
+    margin-bottom: 50px;
+}
+
+/* Clients */
+
+.clients a {
+    opacity: .7;
+}
+
+.clients a:hover {
+    opacity: 1;
+}
+
+/* Footer */
+.footer {
+    padding: 100px 0;
+    background: #444;
+}
