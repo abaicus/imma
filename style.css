@@ -448,6 +448,7 @@ input[type="button"]:active,
 input[type="reset"]:active,
 input[type="submit"]:active {
 	border-color: #aaa #bbb #bbb;
+	outline: none;
 }
 
 input[type="text"],
@@ -539,7 +540,6 @@ a:active {
 }
 
 .main-navigation ul {
-	display: none;
 	list-style: none;
 	margin: 0;
 	padding-left: 0;
@@ -558,10 +558,6 @@ a:active {
 .main-navigation ul ul {
 	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 	float: left;
-	position: absolute;
-	top: 1.5em;
-	left: -999em;
-	z-index: 99999;
 }
 
 .main-navigation ul ul ul {
@@ -612,9 +608,7 @@ a:active {
 }
 
 @media screen and (min-width: 37.5em) {
-	.menu-toggle {
-		display: none;
-	}
+
 	.main-navigation ul {
 		display: block;
 	}
