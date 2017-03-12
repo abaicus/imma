@@ -322,6 +322,10 @@ h6 {
 .blog .blog-post {
   display: table;
   margin-bottom: 35px; }
+  .blog .blog-post:last-child {
+    margin-bottom: 0; }
+    .blog .blog-post:last-child .blog-post-image {
+      margin-bottom: 0; }
 
 .blog .blog-post-content {
   float: none;
@@ -354,11 +358,19 @@ h6 {
     margin-bottom: 100px; } }
 
 .sponsor-item {
-  margin-bottom: 40px; }
-  .sponsor-item .clients a {
-    opacity: .7; }
-  .sponsor-item .clients:hover {
+  margin-bottom: 40px;
+  display: table-cell;
+  vertical-align: middle;
+  float: none; }
+
+.clients a {
+  opacity: .7; }
+  .clients a:hover {
     opacity: 1; }
+
+.clients .clients-row {
+  display: table;
+  width: 100%; }
 
 .footer {
   padding: 100px 0;
