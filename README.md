@@ -1,1 +1,1 @@
-node-sass --source-map true --watch sass/main.sass test.css
+node-sass --source-map true --watch sass/main.sass css/generated-style.css
