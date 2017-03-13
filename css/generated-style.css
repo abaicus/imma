@@ -93,7 +93,8 @@ h6 {
   background: rgba(0, 0, 0, 0.75);
   position: fixed;
   top: 0;
-  width: 100%; }
+  width: 100%;
+  z-index: 10000; }
 
 .admin-bar .site-header {
   top: 32px; }
@@ -327,5 +328,299 @@ h6 {
     -webkit-flex: 0 1 auto;
     -ms-flex: 0 1 auto;
     flex: 0 1 auto; } }
+
+#cover {
+  background: url("../img/cover.jpg") no-repeat center;
+  background-attachment: fixed;
+  background-size: cover;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  height: 100vh; }
+
+#cover:after {
+  background-color: rgba(0, 0, 0, 0.6);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: "";
+  position: absolute; }
+
+#cover-caption {
+  width: 100%;
+  z-index: 1; }
+
+.bg-inverse {
+  background-color: rgba(0, 0, 0, 0.75) !important; }
+
+.card {
+  position: relative;
+  display: block;
+  margin-bottom: 0.75rem;
+  background-color: #fff;
+  border-radius: 0.25rem;
+  border: 1px solid #e0e0e0; }
+
+.card-block {
+  padding: 1.25rem; }
+
+.features i {
+  line-height: 60px;
+  width: 60px;
+  color: #f0ad4e; }
+
+.features i:after {
+  transition: all .3s ease;
+  content: " ";
+  border: 1px solid #efefef;
+  display: block; }
+
+.features .card:hover > i:after {
+  border: 1px solid #f0ad4e; }
+
+.features .card-title {
+  margin: 25px 0; }
+
+.features .card-text {
+  margin-bottom: 25px; }
+
+.ribbon .btn {
+  margin-top: 35px; }
+
+.ribbon {
+  position: relative;
+  background: url("../img/ribbon.jpg") no-repeat center;
+  background-attachment: fixed;
+  background-size: cover;
+  color: white;
+  text-align: center; }
+
+.ribbon:after {
+  background-color: rgba(0, 0, 0, 0.6);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: "";
+  position: absolute; }
+
+.ribbon h2 {
+  text-align: center;
+  margin: 0;
+  font-weight: 300; }
+
+.ribbon .container {
+  z-index: 1;
+  position: relative; }
+
+.ribbon .btn {
+  letter-spacing: .1em; }
+
+@media (min-width: 1200px) {
+  .ribbon .btn {
+    margin-top: 0; }
+  .ribbon .row {
+    display: table;
+    width: 100%; }
+  .ribbon .row > div {
+    display: table-cell;
+    vertical-align: middle;
+    float: none; } }
+
+.product {
+  position: relative; }
+
+.product .product-content {
+  margin: 0 45px;
+  padding: 35px 35px;
+  background: rgba(255, 255, 255, 0.5);
+  color: #373a3c; }
+
+.container-half-left {
+  left: 0;
+  background-position: top left; }
+
+.container-half-right {
+  right: 0;
+  background-position: top right; }
+
+.container-half {
+  width: 100%;
+  position: absolute;
+  vertical-align: middle;
+  top: 0;
+  bottom: 0; }
+
+.product .container-half-right {
+  background: url("../img/product.jpg") no-repeat center;
+  background-size: cover; }
+
+.product .lead {
+  margin-bottom: 25px;
+  font-size: 1.6em; }
+
+.text-content {
+  font-weight: 100;
+  line-height: 32px; }
+
+.product p:last-child {
+  margin-bottom: 0; }
+
+@media (min-width: 768px) {
+  .product .product-content {
+    color: #888888;
+    background: transparent;
+    margin: 0; }
+  .container-half {
+    width: 50%; } }
+
+.portfolio img {
+  max-width: 100%; }
+
+.portfolio .card-img-overlay {
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.7); }
+
+.portfolio .card-caption-wrapper {
+  bottom: 40%;
+  top: auto;
+  position: absolute;
+  left: 0;
+  right: 0; }
+
+.portfolio .card {
+  overflow: hidden; }
+
+.portfolio .card:hover > img {
+  transform: scale(1.1); }
+
+.portfolio .card:hover > .card-img-overlay {
+  opacity: 1; }
+
+.stats .stat-title {
+  font-size: 19px; }
+
+.stat-col {
+  text-align: center;
+  margin-bottom: 50px; }
+  .stat-col i, .stat-col .counter, .stat-col .stat-title {
+    display: block; }
+  .stat-col i:after {
+    border-top: 2px solid;
+    margin: 25px auto;
+    display: block;
+    content: " ";
+    width: 15%; }
+
+.stats {
+  position: relative;
+  background: url("../img/stats.jpg") no-repeat top;
+  background-attachment: fixed;
+  background-size: cover;
+  color: white;
+  text-align: center; }
+  .stats .container {
+    z-index: 1; }
+  .stats:before {
+    background-color: rgba(0, 0, 0, 0.6);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: "";
+    position: absolute;
+    z-index: 0; }
+  .stats i {
+    font-size: 2em;
+    color: #fff; }
+  .stats .counter {
+    font-size: 1.5em; }
+  .stats .stat-title {
+    font-size: 1.2em; }
+
+.stat-col:nth-child(2n+1) > i {
+  color: #ea2e49; }
+
+.stat-col:nth-child(2n+2) > i {
+  color: #daede2; }
+
+.stat-col:nth-child(2n+3) > i {
+  color: #77c4d3; }
+
+.stat-col:nth-child(2n+4) > i {
+  color: #f6f792; }
+
+@media (min-width: 992px) {
+  .stat-col {
+    margin-bottom: 0; } }
+
+.blog img {
+  max-width: 100%; }
+
+.blog .blog-post {
+  display: table;
+  margin-bottom: 35px; }
+  .blog .blog-post:last-child {
+    margin-bottom: 0; }
+    .blog .blog-post:last-child .blog-post-image {
+      margin-bottom: 0; }
+
+.blog .blog-post-content {
+  float: none;
+  display: table-footer-group; }
+
+.blog .blog-post-image {
+  margin-bottom: 35px;
+  display: table-header-group;
+  padding: 0; }
+
+.blog .post-title {
+  font-weight: 300;
+  line-height: 45px;
+  margin-bottom: 50px;
+  color: #666; }
+
+.blog .text-content {
+  color: #888;
+  margin-bottom: 50px; }
+
+@media (min-width: 992px) {
+  .blog .blog-post, .blog .blog-post-image, .blog .blog-post-content {
+    display: block; }
+  .blog .blog-post-content {
+    float: left; }
+  .blog .blog-post-image {
+    padding-left: 15px;
+    padding-right: 15px; }
+  .blog .blog-post {
+    margin-bottom: 100px; } }
+
+.sponsor-item {
+  margin-bottom: 40px;
+  display: table-cell;
+  vertical-align: middle;
+  float: none; }
+
+.clients a {
+  opacity: .7; }
+  .clients a:hover {
+    opacity: 1; }
+
+.clients .clients-row {
+  display: table;
+  width: 100%; }
+
+.site-footer {
+  padding: 100px 0;
+  background: #444; }
+  .site-footer .site-info {
+    color: #fff; }
+    .site-footer .site-info a {
+      color: #f0ad4e; }
+      .site-footer .site-info a:hover {
+        color: #fff;
+        text-decoration: none; }
 
 /*# sourceMappingURL=generated-style.css.map */

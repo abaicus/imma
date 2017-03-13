@@ -1,0 +1,63 @@
+.stats .stat-title
+  font-size: 19px
+
+.stat-col
+  text-align: center
+  margin-bottom: 50px
+
+  i, .counter, .stat-title
+    display: block
+
+  i:after
+    border-top: 2px solid
+    margin: 25px auto
+    display: block
+    content: " "
+    width: 15%
+
+.stats
+  position: relative
+  background: url('../img/stats.jpg') no-repeat top
+  background-attachment: fixed
+  background-size: cover
+  color: white
+  text-align: center
+
+  .container
+    z-index: 1
+
+  &:before
+    background-color: rgba(0,0,0,0.6)
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    content: ""
+    position: absolute
+    z-index: 0
+
+  i
+    font-size: 2em
+    color: #fff
+
+  .counter
+    font-size: 1.5em
+
+  .stat-title
+    font-size: 1.2em
+
+.stat-col:nth-child(2n+1) > i
+  color: #ea2e49
+
+.stat-col:nth-child(2n+2) > i
+  color: #daede2
+
+.stat-col:nth-child(2n+3) > i
+  color: #77c4d3
+
+.stat-col:nth-child(2n+4) > i
+  color: #f6f792
+
+@media ( min-width: 992px )
+  .stat-col
+    margin-bottom: 0

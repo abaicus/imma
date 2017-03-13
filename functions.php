@@ -7,6 +7,8 @@
  * @package imma
  */
 
+define( IMMA_INCLUDE_DIR, get_template_directory() . '/inc' );
+
 if ( ! function_exists( 'imma_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -111,6 +113,8 @@ function imma_scripts() {
 
 	wp_enqueue_style( 'imma-header', get_template_directory_uri() . '/css/generated-style.css', false, '1.0', 'all' );
 
+	wp_enqueue_style( 'imma-font-awesome', get_template_directory_uri() . '/css/font-awesome/css/font-awesome.css', false, '4.7.0', 'all' );
+
 	wp_enqueue_script( 'imma-navigation', get_template_directory_uri() . '/js/navigation.js', array('jquery'), '20151215', true );
 
 	wp_localize_script( 'imma-navigation', 'screenReaderText', array(
@@ -150,3 +154,40 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+/**
+ * Define Allowed Files to be included.
+ *
+ * @since Imma 1.0
+ */
+function imma_filter_features( $array ) {
+	return array_merge( $array, array(
+		'/sections/hero-section',
+		'/sections/services-section',
+		'/sections/ribbon-section',
+		'/sections/about-section',
+		'/sections/portfolio-section',
+		'/sections/stats-section',
+		'/sections/blog-section',
+		'/sections/clients-section',
+	));
+}
+add_filter( 'imma_filter_features', 'imma_filter_features' );
+
+/**
+ * Include features files.
+ *
+ * @since Imma 1.0
+ */
+function imma_include_features() {
+	$inc_dir = rtrim( IMMA_INCLUDE_DIR, '/' );
+	$allowed_phps = array();
+	$allowed_phps = apply_filters( 'imma_filter_features', $allowed_phps );
+	foreach ( $allowed_phps as $file ) {
+		$file_to_include = $inc_dir . $file . '.php';
+		if ( file_exists( $file_to_include ) ) {
+			include_once( $file_to_include );
+		}
+	}
+}
+add_action( 'after_setup_theme', 'imma_include_features' );

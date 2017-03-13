@@ -1,0 +1,34 @@
+$baseColor : #e0e0e0
+$cardPadding : 1.25rem
+
+.card
+  position: relative
+  display: block
+  margin-bottom: 0.75rem
+  background-color: #fff
+  border-radius: 0.25rem
+  border: 1px solid $baseColor
+
+.card-block
+  padding: $cardPadding
+
+.features i
+  line-height: 60px
+  width: 60px
+  color: $accentColor
+
+.features i:after
+  transition: all .3s ease
+  content: " "
+  border: 1px solid #efefef
+  display: block
+
+
+.features .card:hover > i:after
+  border: 1px solid $accentColor
+
+.features .card-title
+  margin: 25px 0
+
+.features .card-text
+  margin-bottom: 25px
