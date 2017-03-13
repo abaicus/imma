@@ -105,7 +105,7 @@ add_action( 'widgets_init', 'imma_widgets_init' );
  * Enqueue scripts and styles.
  */
 function imma_scripts() {
-	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap/bootstrap.min.css', array(), '3.3.6', 'all' );
+	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap/bootstrap.min.css', array(), '3.3.7', 'all' );
 
 	wp_enqueue_style( 'imma-style', get_stylesheet_uri() );
 
