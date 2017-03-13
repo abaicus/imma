@@ -109,7 +109,7 @@ function imma_scripts() {
 
 	wp_enqueue_style( 'imma-style', get_stylesheet_uri() );
 
-	wp_enqueue_style( 'imma-header', get_template_directory_uri() . '/css/header.css', false, '1.0', 'all' );
+	wp_enqueue_style( 'imma-header', get_template_directory_uri() . '/css/generated-style.css', false, '1.0', 'all' );
 
 	wp_enqueue_script( 'imma-navigation', get_template_directory_uri() . '/js/navigation.js', array('jquery'), '20151215', true );
 

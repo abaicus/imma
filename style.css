@@ -556,17 +556,12 @@ a:active {
 }
 
 .main-navigation ul ul {
-	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 	float: left;
 }
 
 .main-navigation ul ul ul {
 	left: -999em;
 	top: 0;
-}
-
-.main-navigation ul ul a {
-	width: 200px;
 }
 
 .main-navigation ul ul li {
