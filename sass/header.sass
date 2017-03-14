@@ -1,9 +1,9 @@
 .site-header
-  background: rgba(0,0,0,0.75)
+  background: transparent
   position: fixed
   top: 0
   width: 100%
-  z-index: 10000
+  z-index: 2
 
 .admin-bar
   .site-header
@@ -291,3 +291,13 @@
     -webkit-flex: 0 1 auto
     -ms-flex: 0 1 auto
     flex: 0 1 auto
+
+@media screen and (max-width: 782px)
+  .admin-bar
+    .site-header
+      top: 46px
+
+@media screen and (max-width: 600px)
+  .admin-bar
+    .site-header
+      top: 0

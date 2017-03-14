@@ -7,7 +7,7 @@
  * @package imma
  */
 
-define( IMMA_INCLUDE_DIR, get_template_directory() . '/inc' );
+define( "IMMA_INCLUDE_DIR", get_template_directory() . '/inc' );
 
 if ( ! function_exists( 'imma_setup' ) ) :
 /**
@@ -69,6 +69,15 @@ function imma_setup() {
 
 	// Add theme support for selective refresh for widgets.
 	add_theme_support( 'customize-selective-refresh-widgets' );
+
+	// Add theme support for custom logo
+	add_theme_support( 'custom-logo', array(
+		'height'      => 100,
+		'width'       => 400,
+		'flex-height' => true,
+		'flex-width'  => true,
+		'header-text' => array( 'site-title', 'site-description' ),
+	) );
 }
 endif;
 add_action( 'after_setup_theme', 'imma_setup' );
@@ -116,6 +125,8 @@ function imma_scripts() {
 	wp_enqueue_style( 'imma-font-awesome', get_template_directory_uri() . '/css/font-awesome/css/font-awesome.css', false, '4.7.0', 'all' );
 
 	wp_enqueue_script( 'imma-navigation', get_template_directory_uri() . '/js/navigation.js', array('jquery'), '20151215', true );
+
+	wp_enqueue_script( 'imma-custom-js', get_template_directory_uri() . '/js/custom-script.js', array('jquery'), '1.0', true );
 
 	wp_localize_script( 'imma-navigation', 'screenReaderText', array(
 		'expand'   => '<span class="screen-reader-text">' . esc_html__( 'expand child menu', 'capri-pro' ) . '</span>',
