@@ -1,16 +1,46 @@
 <?php
 /**
- * Services Section
+ * Services section for the homepage.
  *
- * @since 1.0.0
- * @package imma
- *
+ * @package Imma
+ * @since Imma 1.0
  */
-
-if ( ! function_exists( 'imma_services_section' ) ) {
-	function imma_services_section() { ?>
-
-
+if ( ! function_exists( 'imma_services' ) ) :
+	/**
+	 * Features section content.
+	 *
+	 * @since Imma 1.0
+	 */
+	function imma_services() {
+		$imma_services_title    = get_theme_mod( 'imma_services_title', esc_html__( 'Why our product is the best', 'imma' ) );
+		$imma_services_subtitle = get_theme_mod( 'imma_services_subtitle', esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'imma' ) );
+		$imma_services_content  = get_theme_mod( 'imma_services_content', json_encode( array(
+			array(
+				'icon_value' => 'fa-wechat',
+				'title'      => esc_html__( 'Responsive', 'hestia-pro' ),
+				'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'hestia-pro' ),
+				'link'       => '#',
+				'id'         => 'customizer_repeater_56d7ea7f40b56',
+				'color'      => '#e91e63',
+			),
+			array(
+				'icon_value' => 'fa-check',
+				'title'      => esc_html__( 'Quality', 'hestia-pro' ),
+				'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'hestia-pro' ),
+				'link'       => '#',
+				'id'         => 'customizer_repeater_56d7ea7f40b66',
+				'color'      => '#00bcd4',
+			),
+			array(
+				'icon_value' => 'fa-support',
+				'title'      => esc_html__( 'Support', 'hestia-pro' ),
+				'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'hestia-pro' ),
+				'link'       => '#',
+				'id'         => 'customizer_repeater_56d7ea7f40b86',
+				'color'      => '#4caf50',
+			),
+		) ) );
+		?>
 		<section id="features" class="features">
 			<div class="container">
 				<div class="row">
@@ -53,7 +83,11 @@ if ( ! function_exists( 'imma_services_section' ) ) {
 				</div>
 			</div>
 		</section>
+		<?php
+	}
+endif;
 
-	<?php }
+if ( function_exists( 'imma_services' ) ) {
+	$section_priority = apply_filters( 'imma_section_priority', 10, 'imma_services' );
+	add_action( 'imma_sections', 'imma_services', absint( $section_priority ) );
 }
-add_action( 'imma_sections', 'imma_services_section' );
