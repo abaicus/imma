@@ -59,7 +59,7 @@
 							wp_nav_menu( array(
 								'theme_location' => 'primary',
 								'menu_class'     => 'primary-menu',
-								//'fallback_cb'    => 'capri_fallback_menu',
+								'fallback_cb'    => 'imma_fallback_menu',
 							) );
 							?>
 						</nav><!-- .main-navigation -->

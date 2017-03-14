@@ -10,7 +10,7 @@
 if ( ! function_exists( 'imma_blog_section' ) ) {
 	function imma_blog_section() { ?>
 
-		<section id="blog" class="blog">
+		<section id="blog-section" class="blog-section">
 			<div class="container">
 
 				<div class="row">

@@ -6,7 +6,7 @@ html, body {
   height: 100%;
   font-family: “Segoe UI”, sans-serif; }
 
-.features, .ribbon, .product, .portfolio, .stats, .blog, .clients {
+.features, .ribbon, .product, .portfolio, .stats, .blog-section, .clients {
   padding: 100px 0; }
 
 html {
@@ -90,11 +90,11 @@ h6 {
   padding: 12px 24px; }
 
 .site-header {
-  background: rgba(0, 0, 0, 0.75);
+  background: transparent;
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 10000; }
+  z-index: 2; }
 
 .admin-bar .site-header {
   top: 32px; }
@@ -329,6 +329,14 @@ h6 {
     -ms-flex: 0 1 auto;
     flex: 0 1 auto; } }
 
+@media screen and (max-width: 782px) {
+  .admin-bar .site-header {
+    top: 46px; } }
+
+@media screen and (max-width: 600px) {
+  .admin-bar .site-header {
+    top: 0; } }
+
 #cover {
   background: url("../img/cover.jpg") no-repeat center;
   background-attachment: fixed;
@@ -337,7 +345,8 @@ h6 {
   text-align: center;
   display: flex;
   align-items: center;
-  height: 100vh; }
+  height: 100vh;
+  position: relative; }
 
 #cover:after {
   background-color: rgba(0, 0, 0, 0.6);
