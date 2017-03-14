@@ -174,7 +174,10 @@ require get_template_directory() . '/inc/jetpack.php';
 function imma_filter_features( $array ) {
 	return array_merge( $array, array(
 		'/sections/hero-section',
+
 		'/sections/services-section',
+		'/features/feature-services-section',
+
 		'/sections/ribbon-section',
 		'/sections/about-section',
 		'/sections/portfolio-section',

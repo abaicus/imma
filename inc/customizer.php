@@ -14,8 +14,16 @@ function imma_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
+
+	$wp_customize->add_panel( 'imma_frontpage_sections', array(
+		'priority' => 30,
+		'title' => esc_html__( 'Frontpage Sections', 'imma' ),
+		'description' => esc_html__( 'Drag and drop panels to change sections order.','imma' ),
+	));
 }
 add_action( 'customize_register', 'imma_customize_register' );
+
+
 
 /**
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
