@@ -23,7 +23,7 @@
 <body <?php body_class(); ?>>
 <div id="page" class="site">
 	<div class="site-inner">
-		<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'capri-pro' ); ?></a>
+		<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'imma' ); ?></a>
 
 		<header id="masthead" class="site-header" role="banner">
 			<div class="container header-container">
@@ -54,7 +54,7 @@
 					</button>
 					<div id="site-header-menu" class="site-header-menu">
 
-						<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Primary Menu', 'capri-pro' ); ?>">
+						<nav id="site-navigation" class="main-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Primary Menu', 'imma' ); ?>">
 							<?php
 							wp_nav_menu( array(
 								'theme_location' => 'primary',
