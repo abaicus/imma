@@ -3,7 +3,7 @@
 module.exports = {
     lite: {
         options: {
-            textdomain: '<%= package.theme.litename %>',
+            textdomain: '<%= package.theme.textdomain %>-lite',
             updateDomains: ['<%= package.theme.textdomain %>'],
 
         },
