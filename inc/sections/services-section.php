@@ -70,13 +70,15 @@ function imma_get_services_content(){
 	$imma_services_content  = get_theme_mod( 'imma_services_content', $default);
 	if( !empty($imma_services_content) ){
 		$imma_services_content = json_decode($imma_services_content, true);
+		$count = 0;
 		foreach ( $imma_services_content as $services_box){
+			$count ++;
 			$icon = isset($services_box['icon_value']) ?  $services_box['icon_value'] : '';
 			$title = isset($services_box['title']) ? $services_box['title'] : '';
 			$text = isset($services_box['subtitle']) ? $services_box['subtitle'] : '';
 			$button_text = isset($services_box['text']) ? $services_box['text'] : '';
 			$button_link = isset($services_box['link']) ? $services_box['link'] : ''; ?>
-			<div class="col-md-4">
+			<div class="col-md-4 col-centered">
 				<div class="card card-block text-center">
 					<?php
 					if( !empty($icon) ) { ?>
@@ -92,7 +94,7 @@ function imma_get_services_content(){
 						<?php
 					}
 					if( !empty($button_text) && !empty($button_link) ){ ?>
-						<a href="<?php echo esc_url($button_link); ?>" class="btn btn-yellow btn-outline"><?php echo wp_kses_post($button_text); ?></a>
+						<a href="<?php echo esc_url($button_link); ?>" class="btn btn-yellow <?php if( $count % 2 !== 0) { echo 'btn-outline'; } ?>"><?php echo wp_kses_post($button_text); ?></a>
 						<?php
 					}?>
 				</div>
