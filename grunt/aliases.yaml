@@ -1,0 +1,5 @@
+#Generate Lite
+generate:
+  - 'mkdir:lite'
+  - 'sync:syncLite'
+  - 'replace'
