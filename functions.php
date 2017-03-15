@@ -129,8 +129,8 @@ function imma_scripts() {
 	wp_enqueue_script( 'imma-custom-js', get_template_directory_uri() . '/js/custom-script.js', array('jquery'), '1.0', true );
 
 	wp_localize_script( 'imma-navigation', 'screenReaderText', array(
-		'expand'   => '<span class="screen-reader-text">' . esc_html__( 'expand child menu', 'capri-pro' ) . '</span>',
-		'collapse' => '<span class="screen-reader-text">' . esc_html__( 'collapse child menu', 'capri-pro' ) . '</span>',
+		'expand'   => '<span class="screen-reader-text">' . esc_html__( 'expand child menu', 'imma' ) . '</span>',
+		'collapse' => '<span class="screen-reader-text">' . esc_html__( 'collapse child menu', 'imma' ) . '</span>',
 	) );
 
 	wp_enqueue_script( 'imma-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
@@ -179,7 +179,11 @@ function imma_filter_features( $array ) {
 		'/features/feature-services-section',
 
 		'/sections/ribbon-section',
+		'/features/feature-ribbon-section',
+
 		'/sections/about-section',
+		'/features/feature-about-section',
+
 		'/sections/portfolio-section',
 		'/sections/stats-section',
 		'/sections/blog-section',

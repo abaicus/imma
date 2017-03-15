@@ -1,0 +1,26 @@
+{
+  "name": "imma",
+  "nicename": "Imma",
+  "litename": "imma-lite",
+  "version": "1.0.0",
+  "description": "Imma Theme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abaicus/imma.git"
+  },
+  "keywords": [
+    "wordpress-theme"
+  ],
+  "theme": {
+    "textdomain": "imma"
+  },
+  "author": "Cristian Ungureanu & Andrei Baicus",
+  "license": "GPL-2.0+",
+  "bugs": {
+    "url": "https://github.com/abaicus/imma/issues"
+  },
+  "devDependencies": {
+    "grunt-theme-fleet": "codeinwp/grunt-theme-fleet",
+    "load-project-config": "~0.2.0"
+  }
+}

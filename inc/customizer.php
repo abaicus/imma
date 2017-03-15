@@ -32,3 +32,15 @@ function imma_customize_preview_js() {
 	wp_enqueue_script( 'imma_customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20151215', true );
 }
 add_action( 'customize_preview_init', 'imma_customize_preview_js' );
+
+
+if ( ! function_exists( 'imma_sanitize_checkbox' ) ) :
+	/**
+	 * Sanitize checkbox output.
+	 *
+	 * @since Imma 1.0
+	 */
+	function imma_sanitize_checkbox( $input ) {
+		return ( isset( $input ) && true === (bool) $input ? true : false );
+	}
+endif;
