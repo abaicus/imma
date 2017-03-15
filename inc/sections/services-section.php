@@ -12,74 +12,44 @@ if ( ! function_exists( 'imma_services' ) ) :
 	 * @since Imma 1.0
 	 */
 	function imma_services() {
-		$imma_services_title    = get_theme_mod( 'imma_services_title', esc_html__( 'Why our product is the best', 'imma' ) );
-		$imma_services_subtitle = get_theme_mod( 'imma_services_subtitle', esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'imma' ) );
-		$imma_services_content  = get_theme_mod( 'imma_services_content', json_encode( array(
-			array(
-				'icon_value' => 'fa-wechat',
-				'title'      => esc_html__( 'Responsive', 'hestia-pro' ),
-				'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'hestia-pro' ),
-				'link'       => '#',
-				'id'         => 'customizer_repeater_56d7ea7f40b56',
-				'color'      => '#e91e63',
-			),
-			array(
-				'icon_value' => 'fa-check',
-				'title'      => esc_html__( 'Quality', 'hestia-pro' ),
-				'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'hestia-pro' ),
-				'link'       => '#',
-				'id'         => 'customizer_repeater_56d7ea7f40b66',
-				'color'      => '#00bcd4',
-			),
-			array(
-				'icon_value' => 'fa-support',
-				'title'      => esc_html__( 'Support', 'hestia-pro' ),
-				'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'hestia-pro' ),
-				'link'       => '#',
-				'id'         => 'customizer_repeater_56d7ea7f40b86',
-				'color'      => '#4caf50',
-			),
-		) ) );
+		$imma_services_hide = get_theme_mod('imma_services_hide');
+		if( (bool) $imma_services_hide === true ){
+			return;
+		}
+
+		$default = current_user_can( 'edit_posts' ) ? sprintf(
+			__( 'Edit this section title in %1$s', 'imma' ),
+			sprintf( '<a class="link-to-customizer" href="%1$s">%2$s</a>',
+				admin_url( 'customize.php?autofocus[control]=imma_services_title' ),
+				__( 'customizer', 'imma' ) )
+		) : false;
+		$imma_services_title    = get_theme_mod( 'imma_services_title', $default );
+
+		$default = current_user_can( 'edit_posts' ) ? sprintf(
+			__( 'Edit this section subtitle in %1$s', 'imma' ),
+			sprintf( '<a class="link-to-customizer" href="%1$s">%2$s</a>',
+				admin_url( 'customize.php?autofocus[control]=imma_services_subtitle' ),
+				__( 'customizer', 'imma' ) )
+		) : false;
+		$imma_services_subtitle = get_theme_mod( 'imma_services_subtitle', $default );
 		?>
 		<section id="features" class="features">
 			<div class="container">
 				<div class="row">
 					<div class=" col-md-12">
-						<h2 class="text-center">Our services</h2>
-						<p class="text-center lead section-subtitle">Learn more about what we stand for and what we
-							offer as a service for your business.</p>
+						<?php
+						if( !empty($imma_services_title) ){ ?>
+							<h2 class="text-center section-title"><?php echo wp_kses_post($imma_services_title); ?></h2>
+							<?php
+						}
+						if( !empty($imma_services_subtitle) ){ ?>
+							<p class="text-center lead section-subtitle"><?php echo wp_kses_post($imma_services_subtitle); ?></p>
+							<?php
+						}?>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-4">
-						<div class="card card-block text-center">
-							<i class="fa fa-2x fa-dollar"></i>
-							<h4 class="card-title">Small Prices</h4>
-							<p class="card-text">Our prices are the smallest! You've got to check them out! Lorem ipsum
-								dolor sit amet, consectetur adipisicing elit. </p>
-							<a href="#" class="btn btn-yellow btn-outline">Check it out!</a>
-						</div>
-					</div>
-					<div class="col-md-4">
-
-						<div class="card card-block text-center">
-							<i class="fa fa-2x fa-star "></i>
-							<h4 class="card-title">Guaranteed Satisfaction</h4>
-							<p class="card-text">We give our customers satisfaction! Lorem ipsum dolor sit amet,
-								consectetur adipisicing elit. </p>
-							<a href="#" class="btn btn-yellow ">Check it out!</a>
-						</div>
-					</div>
-					<div class="col-md-4">
-
-						<div class="card card-block text-center">
-							<i class="fa fa-2x fa-gift "></i>
-							<h4 class="card-title">Great Products</h4>
-							<p class="card-text">Our products are the best products around! Lorem ipsum dolor sit amet,
-								consectetur adipisicing elit. </p>
-							<a href="#" class="btn btn-yellow btn-outline">Check it out!</a>
-						</div>
-					</div>
+				<div class="row section-content">
+					<?php imma_get_services_content(); ?>
 				</div>
 			</div>
 		</section>
@@ -90,4 +60,44 @@ endif;
 if ( function_exists( 'imma_services' ) ) {
 	$section_priority = apply_filters( 'imma_section_priority', 10, 'imma_services' );
 	add_action( 'imma_sections', 'imma_services', absint( $section_priority ) );
+}
+
+/**
+ * Display main content of services section
+ */
+function imma_get_services_content(){
+	$default = imma_get_services_content_default();
+	$imma_services_content  = get_theme_mod( 'imma_services_content', $default);
+	if( !empty($imma_services_content) ){
+		$imma_services_content = json_decode($imma_services_content, true);
+		foreach ( $imma_services_content as $services_box){
+			$icon = isset($services_box['icon_value']) ?  $services_box['icon_value'] : '';
+			$title = isset($services_box['title']) ? $services_box['title'] : '';
+			$text = isset($services_box['subtitle']) ? $services_box['subtitle'] : '';
+			$button_text = isset($services_box['text']) ? $services_box['text'] : '';
+			$button_link = isset($services_box['link']) ? $services_box['link'] : ''; ?>
+			<div class="col-md-4">
+				<div class="card card-block text-center">
+					<?php
+					if( !empty($icon) ) { ?>
+						<i class="fa fa-2x <?php echo esc_attr($icon); ?>"></i>
+						<?php
+					}
+					if( !empty($title) ){ ?>
+						<h4 class="card-title"><?php echo wp_kses_post($title); ?></h4>
+						<?php
+					}
+					if( !empty($text) ){ ?>
+						<p class="card-text"><?php echo wp_kses_post($text); ?></p>
+						<?php
+					}
+					if( !empty($button_text) && !empty($button_link) ){ ?>
+						<a href="<?php echo esc_url($button_link); ?>" class="btn btn-yellow btn-outline"><?php echo wp_kses_post($button_text); ?></a>
+						<?php
+					}?>
+				</div>
+			</div>
+			<?php
+		}
+	}
 }
