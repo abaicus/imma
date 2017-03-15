@@ -57,6 +57,10 @@ button.social-repeater-general-control-remove-field:hover{
 	background-color: #FFFFFF;
 }
 
+.customizer-repeater-box-content-hidden textarea{
+	width:100%;
+}
+
 .customizer-repeater-customize-control-title{
 	border: 1px solid #dfdfdf;
 	cursor: move !important;

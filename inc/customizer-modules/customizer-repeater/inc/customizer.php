@@ -21,3 +21,7 @@ function customizer_repeater_sanitize($input){
 	}
 	return $input;
 }
+
+function imma_sanitize_checkbox( $input ) {
+	return ( isset( $input ) && true === (bool) $input ? true : false );
+}
