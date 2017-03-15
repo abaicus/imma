@@ -182,6 +182,8 @@ function imma_filter_features( $array ) {
 		'/features/feature-ribbon-section',
 
 		'/sections/about-section',
+		'/features/feature-about-section',
+
 		'/sections/portfolio-section',
 		'/sections/stats-section',
 		'/sections/blog-section',

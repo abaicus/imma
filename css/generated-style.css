@@ -463,8 +463,9 @@ h6 {
   bottom: 0; }
 
 .product .container-half-right {
-  background: url("../img/product.jpg") no-repeat center;
-  background-size: cover; }
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; }
 
 .product .lead {
   margin-bottom: 25px;

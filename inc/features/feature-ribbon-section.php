@@ -92,10 +92,20 @@ if ( ! function_exists( 'imma_ribbon_customize_register' ) ) :
 	add_action( 'customize_register', 'imma_ribbon_customize_register' );
 endif;
 
+/**
+ * Render callback for ribbon text selective refresh.
+ *
+ * @return string
+ */
 function imma_partial_callback_ribbon_title() {
 	return get_theme_mod( 'imma_ribbon_title' );
 }
 
+/**
+ * Render callback for ribbon button selective refresh.
+ *
+ * @return string
+ */
 function imma_partial_callback_ribbon_button() {
 	$button = '';
 	$text = get_theme_mod( 'imma_ribbon_button_text' );
