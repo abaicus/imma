@@ -5,6 +5,7 @@
  * @package Imma
  * @since Imma 1.0
  */
+
 // Load Customizer repeater control.
 require_once( trailingslashit( get_template_directory() ) . '/inc/customizer-modules/customizer-repeater/functions.php' );
 
@@ -12,7 +13,7 @@ if ( ! function_exists( 'imma_services_customize_register' ) ) :
 	/**
 	 * Hook controls for Features section to Customizer.
 	 *
-	 * @since Hestia 1.0
+	 * @since Imma 1.0
 	 */
 	function imma_services_customize_register( $wp_customize ) {
 		$wp_customize->add_section( 'imma_services', array(
@@ -22,7 +23,7 @@ if ( ! function_exists( 'imma_services_customize_register' ) ) :
 		));
 
 		$wp_customize->add_setting( 'imma_services_hide', array(
-			'sanitize_callback' => 'hestia_sanitize_checkbox',
+			'sanitize_callback' => 'imma_sanitize_checkbox',
 			'default' => false,
 		) );
 		$wp_customize->add_control( 'imma_services_hide', array(
