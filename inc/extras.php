@@ -96,3 +96,42 @@ function imma_inline_style() {
 	wp_add_inline_style( 'imma-style', $custom_css );
 }
 add_action( 'wp_enqueue_scripts', 'imma_inline_style' );
+
+
+/**
+ * Distpllay section title.
+ *
+ * @param string $title Section title.
+ * @param string $subtitle Section subtitle.
+ */
+function imma_display_section_head( $title, $subtitle ){
+	$default = current_user_can( 'edit_posts' ) ? sprintf(
+		__( 'Edit this section title in %1$s', 'imma' ),
+		sprintf( '<a class="link-to-customizer" href="%1$s">%2$s</a>',
+			admin_url( 'customize.php?autofocus[control]=imma_services_title' ),
+			__( 'customizer', 'imma' ) )
+	) : false;
+	$title = get_theme_mod( $title , $default);
+	$default = current_user_can( 'edit_posts' ) ? sprintf(
+		__( 'Edit this section subtitle in %1$s', 'imma' ),
+		sprintf( '<a class="link-to-customizer" href="%1$s">%2$s</a>',
+			admin_url( 'customize.php?autofocus[control]=imma_services_subtitle' ),
+			__( 'customizer', 'imma' ) )
+	) : false;
+	$subtitle = get_theme_mod( $subtitle, $default );
+	?>
+	<div class="row">
+		<div class=" col-md-12">
+			<?php
+			if( !empty($title) ){ ?>
+				<h2 class="text-center section-title"><?php echo wp_kses_post($title) ?></h2>
+				<?php
+			}
+			if( !empty($subtitle) ){ ?>
+				<p class="text-center lead section-subtitle"><?php echo wp_kses_post($subtitle); ?></p>
+				<?php
+			}?>
+		</div>
+	</div>
+	<?php
+}
