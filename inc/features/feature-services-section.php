@@ -120,6 +120,9 @@ add_action( 'customize_register', 'imma_register_services_partials' );
  * @return mixed|string|void
  */
 function imma_get_services_content_default(){
+	if( ! current_user_can( 'edit_posts' ) ){
+		return '';
+	}
 	return json_encode( array(
 		array(
 			'icon_value' => 'fa-dollar',

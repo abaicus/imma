@@ -15,39 +15,10 @@ if ( ! function_exists( 'imma_services' ) ) :
 		$imma_services_hide = get_theme_mod('imma_services_hide');
 		if( (bool) $imma_services_hide === true ){
 			return;
-		}
-
-		$default = current_user_can( 'edit_posts' ) ? sprintf(
-			__( 'Edit this section title in %1$s', 'imma' ),
-			sprintf( '<a class="link-to-customizer" href="%1$s">%2$s</a>',
-				admin_url( 'customize.php?autofocus[control]=imma_services_title' ),
-				__( 'customizer', 'imma' ) )
-		) : false;
-		$imma_services_title    = get_theme_mod( 'imma_services_title', $default );
-
-		$default = current_user_can( 'edit_posts' ) ? sprintf(
-			__( 'Edit this section subtitle in %1$s', 'imma' ),
-			sprintf( '<a class="link-to-customizer" href="%1$s">%2$s</a>',
-				admin_url( 'customize.php?autofocus[control]=imma_services_subtitle' ),
-				__( 'customizer', 'imma' ) )
-		) : false;
-		$imma_services_subtitle = get_theme_mod( 'imma_services_subtitle', $default );
-		?>
+		} ?>
 		<section id="features" class="features">
 			<div class="container">
-				<div class="row">
-					<div class=" col-md-12">
-						<?php
-						if( !empty($imma_services_title) ){ ?>
-							<h2 class="text-center section-title"><?php echo wp_kses_post($imma_services_title); ?></h2>
-							<?php
-						}
-						if( !empty($imma_services_subtitle) ){ ?>
-							<p class="text-center lead section-subtitle"><?php echo wp_kses_post($imma_services_subtitle); ?></p>
-							<?php
-						}?>
-					</div>
-				</div>
+				<?php imma_display_section_head( 'imma_services_title', 'imma_services_subtitle' ); ?>
 				<div class="row section-content">
 					<?php imma_get_services_content(); ?>
 				</div>
