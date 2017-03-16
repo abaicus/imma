@@ -78,3 +78,21 @@ function imma_fallback_menu( $args ) {
 		$fb_output .= '</' . $container . '>';
 	echo $fb_output;
 }
+
+/**
+ * Theme inline style.
+ */
+function imma_inline_style() {
+	$default = current_user_can( 'edit_posts' ) ? get_template_directory_uri() . '/img/ribbon.jpg': false;
+	$imma_ribbon_background_image = get_theme_mod( 'imma_ribbon_background_image', $default );
+	$custom_css = '';
+
+	if( !empty( $imma_ribbon_background_image ) ){
+		$custom_css.=' .ribbon{
+			    background: url('.esc_url( $imma_ribbon_background_image ).');
+		}';
+	}
+
+	wp_add_inline_style( 'imma-style', $custom_css );
+}
+add_action( 'wp_enqueue_scripts', 'imma_inline_style' );

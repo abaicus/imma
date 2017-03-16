@@ -400,7 +400,6 @@ h6 {
 
 .ribbon {
   position: relative;
-  background: url("../img/ribbon.jpg") no-repeat center;
   background-attachment: fixed;
   background-size: cover;
   color: white;
@@ -414,6 +413,11 @@ h6 {
   right: 0;
   content: "";
   position: absolute; }
+
+.ribbon-css {
+  position: absolute;
+  top: 5px;
+  right: 5px; }
 
 .ribbon h2 {
   text-align: center;
