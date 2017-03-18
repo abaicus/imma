@@ -1,0 +1,91 @@
+.carousel-fade
+  position: relative
+  top: 0
+  left: 0
+  z-index: 0
+  width: 100%
+  height: 100vh
+  color: #fff
+
+  .carousel-inner
+    transition-property: opacity
+    height: 100vh
+    background-color: black
+    .item
+      transition-property: opacity
+      background-size: cover
+      text-align: center
+      height: 100vh
+      position: relative
+      &:after
+        background-color: rgba(0, 0, 0, 0.6)
+        background-image: url('../img/bg_pattern_dots.png')
+        top: 0
+        bottom: 0
+        left: 0
+        right: 0
+        content: ""
+        position: absolute
+        z-index: 0
+      .item-content-wrap
+        display: flex
+        height: 100%
+        width: 100%
+        align-items: center
+      .cover-caption
+        z-index: 100
+        position: relative
+    .item,
+    .active.left,
+    .active.right
+      opacity: 0
+      background-size: cover
+      background-position: center center
+    .active,
+    .next.left,
+    .prev.right
+      opacity: 1
+    .next,
+    .prev,
+    .active.left,
+    .active.right
+      left: 0
+      transform: translate3d(0, 0, 0)
+    .scroll-invite
+      -webkit-animation-duration: 3s
+      -moz-animation-delay: 3s
+      -o-animation-iteration-count: 3s
+      -ms-animation-iteration-count: 3s
+      position: relative
+      top: -100px
+      color: #fff
+      opacity: 0.75
+    .carousel-control
+      z-index: 2
+  ol.carousel-indicators
+    bottom: -15px
+    li,
+    li.active
+      margin: 0
+      width: 50px
+      height: 5px
+      background-color: #fff
+      border-radius: 0
+      opacity: 0.25
+    li.active
+      opacity: 1
+  .carousel-control
+    width: 100px
+    z-index: 100
+    font-size: 45px
+    &.left,
+    &.right
+      background-image: none
+      &:hover
+        background-image: none
+    span.fa
+      position: absolute
+      top: 50%
+      margin-top: -10px
+      z-index: 5
+      display: inline-block
