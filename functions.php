@@ -187,7 +187,9 @@ function imma_filter_features( $array ) {
 		'/sections/portfolio-section',
 		'/sections/stats-section',
 		'/sections/blog-section',
+
 		'/sections/clients-section',
+		'/features/feature-clients-section',
 	));
 }
 add_filter( 'imma_filter_features', 'imma_filter_features' );

@@ -13,6 +13,8 @@ if ( ! function_exists( 'imma_ribbon_customize_register' ) ) :
 	 * @since Imma 1.0
 	 */
 	function imma_ribbon_customize_register( $wp_customize ) {
+		$selective_refresh = isset( $wp_customize->selective_refresh ) ? true : false;
+
 		$wp_customize->add_section( 'imma_ribbon', array(
 			'title'    => esc_html__( 'Ribbon', 'imma' ),
 			'panel'    => 'imma_frontpage_sections',
@@ -30,9 +32,12 @@ if ( ! function_exists( 'imma_ribbon_customize_register' ) ) :
 			'priority' => 1,
 		) );
 
+
+		$default = current_user_can( 'edit_posts' ) ? esc_html__( 'Edit this section text in customizer', 'imma' ) : false;
 		$wp_customize->add_setting( 'imma_ribbon_title', array(
 			'sanitize_callback' => 'sanitize_text_field',
-			'transport'         => 'postMessage',
+			'transport'         => $selective_refresh ? 'postMessage' : 'refresh',
+			'default'          => $default,
 		) );
 		$wp_customize->add_control( 'imma_ribbon_title', array(
 			'label'    => esc_html__( 'Section Title', 'imma' ),
@@ -40,9 +45,12 @@ if ( ! function_exists( 'imma_ribbon_customize_register' ) ) :
 			'priority' => 5,
 		) );
 
+
+		$default = current_user_can( 'edit_posts' ) ? esc_html__( 'Edit button label in customizer', 'imma' ) : false;
 		$wp_customize->add_setting( 'imma_ribbon_button_text', array(
 			'sanitize_callback' => 'sanitize_text_field',
-			'transport'         => 'postMessage',
+			'transport'         => $selective_refresh ? 'postMessage' : 'refresh',
+			'default'          => $default
 		) );
 		$wp_customize->add_control( 'imma_ribbon_button_text', array(
 			'label'    => esc_html__( 'Button Text', 'imma' ),
@@ -51,8 +59,9 @@ if ( ! function_exists( 'imma_ribbon_customize_register' ) ) :
 		) );
 
 		$wp_customize->add_setting( 'imma_ribbon_button_link', array(
-			'sanitize_callback' => 'esc_url',
-			'transport'         => 'postMessage',
+			'sanitize_callback' => 'esc_url_raw',
+			'transport'         => $selective_refresh ? 'postMessage' : 'refresh',
+			'default'           => '#'
 		) );
 		$wp_customize->add_control( 'imma_ribbon_button_link', array(
 			'label'    => esc_html__( 'Button Link', 'imma' ),
@@ -60,10 +69,13 @@ if ( ! function_exists( 'imma_ribbon_customize_register' ) ) :
 			'priority' => 15,
 		) );
 
+		$default = current_user_can( 'edit_posts' ) ? get_template_directory_uri() . '/img/ribbon.jpg': false;
 		$wp_customize->add_setting( 'imma_ribbon_background_image', array(
-			'sanitize_callback' => 'esc_url',
-			'transport'         => 'postMessage',
+			'sanitize_callback' => 'esc_url_raw',
+			'transport'         => $selective_refresh ? 'postMessage' : 'refresh',
+			'default'           => $default,
 		) );
+
 		$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'imma_ribbon_background_image', array(
 			'label'    => esc_html__( 'Background Image', 'imma' ),
 			'section'  => 'imma_ribbon',
@@ -88,17 +100,48 @@ if ( ! function_exists( 'imma_ribbon_customize_register' ) ) :
 				'render_callback' => 'imma_partial_callback_ribbon_button',
 			) );
 
-			$wp_customize->selective_refresh->add_partial( 'imma_ribbon_background_image', array(
-				'selector'        => '.ribbon',
-				'settings'        => 'imma_ribbon_background_image',
-				'render_callback' => 'imma_ribbon_image_render_callback',
-			));
-
 		}
 	}
 	add_action( 'customize_register', 'imma_ribbon_customize_register' );
 endif;
 
+/**
+ * Register controls for selective refresh
+ * @param WP_Customize_Manager $wp_customize Customizer
+ */
+function imma_register_ribbon_partials( $wp_customize ){
+	// Abort if selective refresh is not available.
+	if ( ! isset( $wp_customize->selective_refresh ) ) {
+		return;
+	}
+
+	$wp_customize->selective_refresh->add_partial( 'imma_ribbon_title', array(
+		'selector'        => '.ribbon .text-wrapper h2',
+		'settings'        => array( 'imma_ribbon_title' ),
+		'render_callback' => 'imma_partial_callback_ribbon_title',
+	) );
+	//Ribbon Button
+	$wp_customize->selective_refresh->add_partial( 'imma_ribbon_button', array(
+		'selector' => '.ribbon .button-wrapper',
+		'settings' => array( 'imma_ribbon_button_text', 'imma_ribbon_button_link' ),
+		'render_callback' => 'imma_partial_callback_ribbon_button',
+	) );
+
+	$wp_customize->selective_refresh->add_partial( 'imma_ribbon_button_link', array(
+		'selector' => '.ribbon .button-wrapper',
+		'settings' => array( 'imma_ribbon_button_text', 'imma_ribbon_button_link' ),
+		'render_callback' => 'imma_partial_callback_ribbon_button',
+	) );
+
+	$wp_customize->selective_refresh->add_partial( 'imma_ribbon_background_image', array(
+		'selector' => '.ribbon-css',
+		'settings' => 'imma_ribbon_background_image',
+		'render_callback' => 'imma_partial_callback_ribbon_background',
+	) );
+
+
+}
+add_action( 'customize_register', 'imma_register_ribbon_partials' );
 /**
  * Render callback for ribbon text selective refresh.
  *
@@ -123,17 +166,14 @@ function imma_partial_callback_ribbon_button() {
 	return $button;
 }
 
-/**
- * Render callback for ribbon background image selective refresh.
- */
-function imma_ribbon_image_render_callback() {
-	$imma_ribbon_image = get_theme_mod( 'imma_ribbon_background_image' );
-	if ( ! empty( $imma_ribbon_image ) ) { ?>
-		<style class="ribbon-image-css">
-			.ribbon {
-				background-image: url(<?php echo ! empty( $imma_ribbon_image ) ? esc_url( $imma_ribbon_image ) : 'none' ?>) !important;
-			}
-		</style>
-		<?php
-	}
+
+
+function imma_partial_callback_ribbon_background(){
+	$imma_ribbon_background_image = get_theme_mod('imma_ribbon_background_image'); ?>
+	<style class="imma-ribbon-css">
+		.ribbon {
+			background-image: url(<?php echo !empty( $imma_ribbon_background_image ) ? esc_url($imma_ribbon_background_image) : 'none' ?>);
+		}
+	</style>
+	<?php
 }

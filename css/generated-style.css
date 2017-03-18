@@ -404,6 +404,32 @@ h6 {
   background-size: cover;
   color: white;
   text-align: center; }
+
+.ribbon:after {
+  background-color: rgba(0, 0, 0, 0.6);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: "";
+  position: absolute; }
+
+.ribbon-css {
+  position: absolute;
+  top: 5px;
+  right: 5px; }
+
+.ribbon h2 {
+  text-align: center;
+  margin: 0;
+  font-weight: 300; }
+
+.ribbon .container {
+  z-index: 1;
+  position: relative; }
+
+.ribbon .btn {
+  letter-spacing: .1em; }
   .ribbon:after {
     background-color: rgba(0, 0, 0, 0.6);
     top: 0;
