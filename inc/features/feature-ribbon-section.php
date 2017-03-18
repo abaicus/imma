@@ -62,6 +62,7 @@ if ( ! function_exists( 'imma_ribbon_customize_register' ) ) :
 
 		$wp_customize->add_setting( 'imma_ribbon_background_image', array(
 			'sanitize_callback' => 'esc_url',
+			'transport'         => 'postMessage',
 		) );
 		$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'imma_ribbon_background_image', array(
 			'label'    => esc_html__( 'Background Image', 'imma' ),
@@ -86,6 +87,12 @@ if ( ! function_exists( 'imma_ribbon_customize_register' ) ) :
 				'settings' => array( 'imma_ribbon_button_text', 'imma_ribbon_button_link' ),
 				'render_callback' => 'imma_partial_callback_ribbon_button',
 			) );
+
+			$wp_customize->selective_refresh->add_partial( 'imma_ribbon_background_image', array(
+				'selector'        => '.ribbon',
+				'settings'        => 'imma_ribbon_background_image',
+				'render_callback' => 'imma_ribbon_image_render_callback',
+			));
 
 		}
 	}
@@ -114,4 +121,19 @@ function imma_partial_callback_ribbon_button() {
 		$button .= '<a href="' . esc_url( $link ) . '" class="btn btn-yellow btn-lg btn-outline">' . esc_html( $text ) . '</a>';
 	}
 	return $button;
+}
+
+/**
+ * Render callback for ribbon background image selective refresh.
+ */
+function imma_ribbon_image_render_callback() {
+	$imma_ribbon_image = get_theme_mod( 'imma_ribbon_background_image' );
+	if ( ! empty( $imma_ribbon_image ) ) { ?>
+		<style class="ribbon-image-css">
+			.ribbon {
+				background-image: url(<?php echo ! empty( $imma_ribbon_image ) ? esc_url( $imma_ribbon_image ) : 'none' ?>) !important;
+			}
+		</style>
+		<?php
+	}
 }
