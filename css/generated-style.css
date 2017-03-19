@@ -355,7 +355,9 @@ h6 {
   position: relative; }
 
 #cover:after {
-  background-color: rgba(0, 0, 0, 0.6);
+  opacity: .8;
+  background-color: rgba(0, 0, 0, 0.7);
+  background-image: url("../img/bg_pattern_dots.png");
   top: 0;
   bottom: 0;
   left: 0;
@@ -366,6 +368,10 @@ h6 {
 .cover-caption {
   width: 100%;
   z-index: 1; }
+  .cover-caption .display-3 {
+    margin-bottom: 30px; }
+  .cover-caption .btn {
+    margin-top: 50px; }
 
 .bg-inverse {
   background-color: rgba(0, 0, 0, 0.75) !important; }
@@ -685,6 +691,10 @@ h6 {
       .carousel-fade .carousel-inner .item .cover-caption {
         z-index: 100;
         position: relative; }
+        .carousel-fade .carousel-inner .item .cover-caption .display-3 {
+          margin-bottom: 30px; }
+        .carousel-fade .carousel-inner .item .cover-caption .btn {
+          margin-top: 50px; }
     .carousel-fade .carousel-inner .item,
     .carousel-fade .carousel-inner .active.left,
     .carousel-fade .carousel-inner .active.right {
