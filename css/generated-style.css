@@ -508,6 +508,11 @@ h6 {
 .portfolio .card:hover > .card-img-overlay {
   opacity: 1; }
 
+.stats-css {
+  right: 5px;
+  position: absolute;
+  top: 5px; }
+
 .stats .stat-title {
   font-size: 19px; }
 
@@ -525,11 +530,10 @@ h6 {
 
 .stats {
   position: relative;
-  background: url("../img/stats.jpg") no-repeat top;
   background-attachment: fixed;
   background-size: cover;
   color: white;
-  text-align: center; }
+  text-align: left; }
   .stats .container {
     z-index: 1; }
   .stats:before {

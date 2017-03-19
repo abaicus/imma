@@ -9,6 +9,7 @@ class Customizer_Repeater extends WP_Customize_Control {
 	private $boxtitle = array();
 	private $customizer_repeater_image_control = false;
 	private $customizer_repeater_icon_control = false;
+	private $customizer_repeater_color_control = false;
 	private $customizer_repeater_title_control = false;
 	private $customizer_repeater_subtitle_control = false;
 	private $customizer_repeater_text_control = false;
@@ -32,6 +33,10 @@ class Customizer_Repeater extends WP_Customize_Control {
 
 		if ( ! empty( $args['customizer_repeater_icon_control'] ) ) {
 			$this->customizer_repeater_icon_control = $args['customizer_repeater_icon_control'];
+		}
+
+		if ( ! empty( $args['customizer_repeater_color_control'] ) ) {
+			$this->customizer_repeater_color_control = $args['customizer_repeater_icon_control'];
 		}
 
 		if ( ! empty( $args['customizer_repeater_title_control'] ) ) {
@@ -69,7 +74,9 @@ class Customizer_Repeater extends WP_Customize_Control {
 
 		wp_enqueue_style( 'customizer-repeater-admin-stylesheet', get_template_directory_uri().'/inc/customizer-modules/customizer-repeater/css/admin-style.css','1.0.0' );
 
-		wp_enqueue_script( 'customizer-repeater-script', get_template_directory_uri() . '/inc/customizer-modules/customizer-repeater/js/customizer_repeater.js', array('jquery', 'jquery-ui-draggable' ), '1.0.1', true  );
+		wp_enqueue_style( 'wp-color-picker' );
+
+		wp_enqueue_script( 'customizer-repeater-script', get_template_directory_uri() . '/inc/customizer-modules/customizer-repeater/js/customizer_repeater.js', array('jquery', 'jquery-ui-draggable', 'wp-color-picker' ), '1.0.1', true  );
 
 		wp_enqueue_script( 'customizer-repeater-fontawesome-iconpicker', get_template_directory_uri() . '/inc/customizer-modules/customizer-repeater/js/fontawesome-iconpicker.min.js', array( 'jquery' ), '1.0.0', true );
 
@@ -180,7 +187,14 @@ class Customizer_Repeater extends WP_Customize_Control {
 						if($this->customizer_repeater_icon_control == true){
 							$this->icon_picker_control($icon_value, $choice);
 						}
-
+						if($this->customizer_repeater_color_control == true){
+							$this->input_control(array(
+								'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Color','hestia-pro' ), $this->id, 'customizer_repeater_color_control' ),
+								'class' => 'customizer-repeater-color-control',
+								'type'  => apply_filters('repeater_input_types_filter', 'color', $this->id, 'customizer_repeater_color_control' ),
+								'sanitize_callback' => 'sanitize_hex_color'
+							), $color);
+						}
 						if($this->customizer_repeater_title_control==true){
 							$this->input_control(array(
 								'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Title','imma' ), $this->id, 'customizer_repeater_title_control' ),
@@ -251,6 +265,14 @@ class Customizer_Repeater extends WP_Customize_Control {
 					}
 					if ( $this->customizer_repeater_icon_control == true ) {
 						$this->icon_picker_control();
+					}
+					if($this->customizer_repeater_color_control==true){
+						$this->input_control(array(
+							'label' => apply_filters('repeater_input_labels_filter', esc_html__( 'Color','hestia-pro' ), $this->id, 'customizer_repeater_color_control' ),
+							'class' => 'customizer-repeater-color-control',
+							'type'  => apply_filters('repeater_input_types_filter', 'color', $this->id, 'customizer_repeater_color_control' ),
+							'sanitize_callback' => 'sanitize_hex_color'
+						) );
 					}
 					if ( $this->customizer_repeater_title_control == true ) {
 						$this->input_control( array(

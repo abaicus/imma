@@ -83,12 +83,17 @@ function imma_fallback_menu( $args ) {
  * Theme inline style.
  */
 function imma_inline_style() {
+	$custom_css = '';
+
 	$default = current_user_can( 'edit_posts' ) ? get_template_directory_uri() . '/img/cover.jpg': false;
 	$imma_big_title_background = get_theme_mod( 'imma_big_title_background', $default );
 
 	$default = current_user_can( 'edit_posts' ) ? get_template_directory_uri() . '/img/ribbon.jpg': false;
 	$imma_ribbon_background_image = get_theme_mod( 'imma_ribbon_background_image', $default );
-	$custom_css = '';
+
+
+	$default = current_user_can( 'edit_posts' ) ? get_template_directory_uri() . '/img/stats.jpg': false;
+	$imma_stats_background_image = get_theme_mod( 'imma_stats_background_image', $default );
 
 	if( ! empty( $imma_big_title_background ) ){
 		$custom_css.='#cover{
@@ -99,6 +104,12 @@ function imma_inline_style() {
 	if( !empty( $imma_ribbon_background_image ) ){
 		$custom_css.=' .ribbon{
 			    background: url('.esc_url( $imma_ribbon_background_image ).');
+		}';
+	}
+
+	if( !empty( $imma_stats_background_image ) ){
+		$custom_css.=' .stats{
+			    background: url('.esc_url( $imma_stats_background_image ).');
 		}';
 	}
 

@@ -8,31 +8,21 @@
  */
 
 if ( ! function_exists( 'imma_stats_section' ) ) {
-	function imma_stats_section() { ?>
+	function imma_stats_section() {
+		$imma_stats_hide = get_theme_mod( 'imma_stats_hide' );
+		if( (bool) $imma_stats_hide === true ){
+			return;
+		}?>
 
 		<section id="stats" class="stats">
+			<?php
+			if ( is_customize_preview() ) { ?>
+				<div class="stats-css"></div>
+				<?php
+			} ?>
 			<div class="container">
-				<div class="row">
-					<div class="col-md-3 col-sm-6 col-xs-12 stat-col">
-						<i class="fa fa-bar-chart"></i>
-						<span class="counter">1.300+</span>
-						<span class="lead stat-title">Satisfied Clients</span>
-					</div>
-					<div class="col-md-3 col-sm-6 col-xs-12 stat-col">
-						<i class="fa fa-clipboard"></i>
-						<span class="counter">100+</span>
-						<span class="lead stat-title">Projects Done</span>
-					</div>
-					<div class="col-md-3 col-sm-6 col-xs-12 stat-col">
-						<i class="fa fa-clock-o"></i>
-						<span class="counter">20.000+</span>
-						<span class="lead stat-title">Hours of Work</span>
-					</div>
-					<div class="col-md-3 col-sm-6 col-xs-12 stat-col">
-						<i class="fa fa-pencil"></i>
-						<span class="counter">300+</span>
-						<span class="lead stat-title">Positive Feedbacks</span>
-					</div>
+				<div class="row section-content">
+					<?php imma_get_stats_content(); ?>
 				</div>
 			</div>
 		</section>
@@ -40,3 +30,60 @@ if ( ! function_exists( 'imma_stats_section' ) ) {
 	<?php }
 }
 add_action( 'imma_sections', 'imma_stats_section' );
+
+/**
+ * Get stats content
+ */
+function imma_get_stats_content(){
+	$default = imma_get_stats_content_default();
+	$imma_stats_content = get_theme_mod( 'imma_stats_content', $default );
+	if( !empty( $imma_stats_content ) ){
+		$imma_stats_content = json_decode( $imma_stats_content, true );
+		if( !empty( $imma_stats_content ) ){
+			foreach ( $imma_stats_content as $stat){
+				$icon = isset($stat['icon_value']) ?  $stat['icon_value'] : '';
+				$title = isset($stat['title']) ? $stat['title'] : '';
+				$text = isset($stat['subtitle']) ? $stat['subtitle'] : '';
+				$link = isset($stat['link']) ? $stat['link'] : '';
+				$color = isset($stat['color']) ? $stat['color'] : '';
+
+				if( !empty( $color ) ){
+					$color = 'style="color:'.esc_attr($color).'"';
+				}?>
+
+				<div class="col-md-3 col-sm-6 col-xs-12 stat-col">
+					<?php
+					if( !empty( $icon ) ){
+						if( !empty( $link ) ){ ?>
+							<a href="<?php echo esc_url( $link ); ?>">
+							<?php
+						}?>
+						<i class="fa <?php echo esc_attr( $icon ); ?>" <?php echo $color; ?>></i>
+						<?php
+						if( !empty( $link ) ){ ?>
+							</a>
+							<?php
+						}
+					}
+					if( !empty( $title ) ){
+						if( !empty( $link ) ){ ?>
+							<a href="<?php echo esc_url( $link ); ?>">
+							<?php
+						}?>
+						<span class="counter"><?php echo esc_html( $title ); ?></span>
+						<?php
+						if( !empty( $link ) ){ ?>
+							</a>
+							<?php
+						}
+					}
+					if( !empty( $text ) ){ ?>
+						<div class="lead stat-title"><?php echo wp_kses_post( $text ); ?></div>
+						<?php
+					}?>
+				</div>
+				<?php
+			}
+		}
+	}
+}

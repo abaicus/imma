@@ -194,7 +194,11 @@ function imma_filter_features( $array ) {
 		'/features/feature-about-section',
 
 		'/sections/portfolio-section',
+
+
 		'/sections/stats-section',
+		'/features/feature-stats-section',
+
 		'/sections/blog-section',
 
 		'/sections/clients-section',
