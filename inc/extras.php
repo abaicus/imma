@@ -83,9 +83,18 @@ function imma_fallback_menu( $args ) {
  * Theme inline style.
  */
 function imma_inline_style() {
+	$default = current_user_can( 'edit_posts' ) ? get_template_directory_uri() . '/img/cover.jpg': false;
+	$imma_big_title_background = get_theme_mod( 'imma_big_title_background', $default );
+
 	$default = current_user_can( 'edit_posts' ) ? get_template_directory_uri() . '/img/ribbon.jpg': false;
 	$imma_ribbon_background_image = get_theme_mod( 'imma_ribbon_background_image', $default );
 	$custom_css = '';
+
+	if( ! empty( $imma_big_title_background ) ){
+		$custom_css.='#cover{
+				background: url('. esc_url( $imma_big_title_background ) .')
+		}';
+	}
 
 	if( !empty( $imma_ribbon_background_image ) ){
 		$custom_css.=' .ribbon{
@@ -99,7 +108,7 @@ add_action( 'wp_enqueue_scripts', 'imma_inline_style' );
 
 
 /**
- * Distpllay section title.
+ * Display section title.
  *
  * @param string $title Section title.
  * @param string $subtitle Section subtitle.

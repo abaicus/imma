@@ -338,7 +338,6 @@ h6 {
     top: 0; } }
 
 #cover {
-  background: url("../img/cover.jpg") no-repeat center;
   background-attachment: fixed;
   background-size: cover;
   color: white;
@@ -647,12 +646,11 @@ h6 {
     background-color: black; }
     .carousel-fade .carousel-inner .item {
       transition-property: opacity;
-      background-size: cover;
       text-align: center;
-      height: 100vh;
-      position: relative; }
+      height: 100vh; }
       .carousel-fade .carousel-inner .item:after {
-        background-color: rgba(0, 0, 0, 0.6);
+        opacity: .8;
+        background-color: rgba(0, 0, 0, 0.7);
         background-image: url("../img/bg_pattern_dots.png");
         top: 0;
         bottom: 0;

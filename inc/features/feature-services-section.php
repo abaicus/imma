@@ -51,7 +51,6 @@ if ( ! function_exists( 'imma_services_customize_register' ) ) :
 			'priority' => 5,
 		));
 
-
 		$default = current_user_can( 'edit_posts' ) ? esc_html__( 'Edit this section subtitle in customizer', 'imma' ) : false;
 		$wp_customize->add_setting( 'imma_services_subtitle', array(
 			'default' => $default,

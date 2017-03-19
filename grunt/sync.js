@@ -19,6 +19,8 @@ module.exports = {
                 '!.jshintrc',
                 '!phpcs.xml',
 
+                '!inc/features/feature-slider-section.php',
+                '!inc/sections/slider-section.php',
             ],
             dest: '../<%= package.litename %>/'
         }],

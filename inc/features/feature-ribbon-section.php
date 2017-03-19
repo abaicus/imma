@@ -81,26 +81,6 @@ if ( ! function_exists( 'imma_ribbon_customize_register' ) ) :
 			'section'  => 'imma_ribbon',
 			'priority' => 20,
 		) ) );
-
-		/*
-		 * SELECTIVE REFRESH
-		 */
-		if ( isset( $wp_customize->selective_refresh ) ) {
-			// Ribbon Text
-			$wp_customize->selective_refresh->add_partial( 'imma_ribbon_title', array(
-				'selector'        => '.ribbon .text-wrapper h2',
-				'settings'        => array( 'imma_ribbon_title' ),
-				'render_callback' => 'imma_partial_callback_ribbon_title',
-			) );
-
-			//Ribbon Button
-			$wp_customize->selective_refresh->add_partial( 'imma_ribbon_button', array(
-				'selector' => '.ribbon .button-wrapper',
-				'settings' => array( 'imma_ribbon_button_text', 'imma_ribbon_button_link' ),
-				'render_callback' => 'imma_partial_callback_ribbon_button',
-			) );
-
-		}
 	}
 	add_action( 'customize_register', 'imma_ribbon_customize_register' );
 endif;
@@ -166,8 +146,9 @@ function imma_partial_callback_ribbon_button() {
 	return $button;
 }
 
-
-
+/**
+ * Render callback for ribbon background selective refresh.
+ */
 function imma_partial_callback_ribbon_background(){
 	$imma_ribbon_background_image = get_theme_mod('imma_ribbon_background_image'); ?>
 	<style class="imma-ribbon-css">

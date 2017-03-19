@@ -124,9 +124,9 @@ function imma_scripts() {
 
 	wp_enqueue_style( 'imma-font-awesome', get_template_directory_uri() . '/css/font-awesome/css/font-awesome.css', false, '4.7.0', 'all' );
 
-	wp_enqueue_script( 'imma-navigation', get_template_directory_uri() . '/js/navigation.js', array('jquery'), '20151215', true );
+	wp_enqueue_script( 'bootstrap-script', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), '3.3.7', true );
 
-	wp_enqueue_script( 'bootstrap-script', get_template_directory_uri() . '/js/bootstrap.js', array('jquery'), '3.3.7', true );
+	wp_enqueue_script( 'imma-navigation', get_template_directory_uri() . '/js/navigation.js', array('jquery'), '20151215', true );
 
 	wp_enqueue_script( 'imma-custom-js', get_template_directory_uri() . '/js/custom-script.js', array('jquery'), '1.0', true );
 
@@ -175,9 +175,14 @@ require get_template_directory() . '/inc/jetpack.php';
  */
 function imma_filter_features( $array ) {
 	return array_merge( $array, array(
+
 		'/sections/hero-section',
+
 		'/sections/big-title-section',
+		'/features/feature-big-title-section',
+
 		'/sections/slider-section',
+		'/features/feature-slider-section',
 
 		'/sections/services-section',
 		'/features/feature-services-section',
