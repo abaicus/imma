@@ -92,9 +92,15 @@ function imma_register_slider_partials( $wp_customize ){
 	}
 
 	$wp_customize->selective_refresh->add_partial( 'imma_slider_content', array(
-		'selector'        => '.features .section-content',
+		'selector'        => '.slider-customizer-wrap',
 		'settings'        => 'imma_slider_content',
 		'render_callback' => 'imma_get_slider_content',
+	) );
+
+	$wp_customize->selective_refresh->add_partial( 'imma_slider_arrows', array(
+		'selector'        => '.arrows-wrap',
+		'settings'        => 'imma_slider_arrows_link',
+		'render_callback' => 'imma_partial_callback_slider_arrows',
 	) );
 }
 add_action( 'customize_register', 'imma_register_slider_partials' );
@@ -174,3 +180,18 @@ function imma_slider_repeater_input_types( $string, $id, $control ) {
 	return $string;
 }
 add_filter( 'repeater_input_types_filter','imma_slider_repeater_input_types', 10 , 3 );
+
+
+/**
+ * Render callback for ribbon background selective refresh.
+ *
+ * @return string
+ */
+function imma_partial_callback_slider_arrows() {
+	$link = get_theme_mod( 'imma_slider_arrows_link' );
+	$output = '';
+	if( ! empty( $link ) ) {
+		$output = '<a href="' .esc_url( $link ) .'"><i class="scroll-invite animated bounce fa fa-3x  fa-angle-double-down"></i></a>';
+	}
+	return $output;
+}
