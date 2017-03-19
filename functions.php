@@ -200,6 +200,7 @@ function imma_filter_features( $array ) {
 		'/features/feature-stats-section',
 
 		'/sections/blog-section',
+		'/features/feature-blog-section',
 
 		'/sections/clients-section',
 		'/features/feature-clients-section',
