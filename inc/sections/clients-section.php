@@ -8,6 +8,9 @@
  */
 
 if ( ! function_exists( 'imma_clients_section' ) ) {
+	/**
+	 * Clients section
+	 */
 	function imma_clients_section() {
 		$imma_clients_hide = get_theme_mod('imma_clients_hide');
 		if( (bool) $imma_clients_hide === true ){
