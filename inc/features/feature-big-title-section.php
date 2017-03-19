@@ -71,7 +71,7 @@ if ( ! function_exists( 'imma_big_title_customize_register' ) ) :
 			'priority' => 15,
 		));
 
-		$default = current_user_can( 'edit_posts' ) ? esc_url( '#' ) : false;
+		$default = current_user_can( 'edit_posts' ) ? esc_url( admin_url( 'customize.php?autofocus[control]=imma_big_title_button_text' ) ) : false;
 		$wp_customize->add_setting( 'imma_big_title_button_link', array(
 			'default' => $default,
 			'sanitize_callback' => 'esc_url_raw',

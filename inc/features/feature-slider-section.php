@@ -114,22 +114,49 @@ function imma_get_slider_content_default() {
 		return '';
 	}
 
-	return json_encode( array(
-		array(
-			'image_url'=> get_template_directory_uri() . '/img/cover.jpg',
-			'title'    => esc_html__( 'Edit this slider in Customizer', 'imma' ),
-			'subtitle' => esc_html__( 'We\'ve made it easy for users to customize this theme!', 'imma' ),
-			'link'     => '#',
-			'text'     => esc_html__( 'Go to customizer', 'imma' ),
-		),
-		array(
-			'image_url'  => get_template_directory_uri() . '/img/portfolio5.jpg',
-			'title'      => esc_html__( 'We are IMMA', 'imma' ),
-			'subtitle'   => esc_html__( 'Easy to customize. Easy to use.', 'imma' ),
-			'link'       => '#',
-			'text'       => esc_html__( 'Go to customizer!', 'imma' ),
-		),
-	) );
+	if ( is_customize_preview() ) {
+		return json_encode( array(
+			array(
+				'image_url'=> get_template_directory_uri() . '/img/cover.jpg',
+				'title'    => esc_html__( 'Edit title in customizer', 'imma' ),
+				'subtitle' => esc_html__( 'Edit this subtitle in customizer', 'imma' ),
+				'link'     => '#',
+				'text'     => esc_html__( 'Edit this button in customizer', 'imma' ),
+			),
+			array(
+				'image_url'  => get_template_directory_uri() . '/img/portfolio5.jpg',
+				'title'      => esc_html__( 'We are IMMA', 'imma' ),
+				'subtitle'   => esc_html__( 'Easy to customize. Easy to use.', 'imma' ),
+				'link'       => '#',
+				'text'       => esc_html__( 'Go to customizer!', 'imma' ),
+			),
+		) );
+	} else {
+		return json_encode( array(
+			array(
+				'image_url'=> get_template_directory_uri() . '/img/cover.jpg',
+				'title'    => sprintf(
+					__( 'Edit title in %1$s', 'imma' ),
+					sprintf( '<a class="link-to-customizer" href="%1$s">%2$s</a>',
+						admin_url( 'customize.php?autofocus[control]=imma_slider_content' ),
+						__( 'customizer', 'imma' ) ) ),
+				'subtitle' => sprintf(
+					__( 'Edit this subtitle in %1$s', 'imma' ),
+					sprintf( '<a class="link-to-customizer" href="%1$s">%2$s</a>',
+						admin_url( 'customize.php?autofocus[control]=imma_slider_content' ),
+						__( 'customizer', 'imma' ) ) ),
+				'link'     => esc_url( admin_url() . 'customize.php?autofocus[control]=imma_slider_content' ),
+				'text'     => esc_html__( 'Edit this button in customizer', 'imma' ),
+			),
+			array(
+				'image_url'  => get_template_directory_uri() . '/img/portfolio5.jpg',
+				'title'      => esc_html__( 'We are IMMA', 'imma' ),
+				'subtitle'   => esc_html__( 'Easy to customize. Easy to use.', 'imma' ),
+				'link'       => '#',
+				'text'       => esc_html__( 'Go to customizer!', 'imma' ),
+			),
+		) );
+	}
 }
 
 /**

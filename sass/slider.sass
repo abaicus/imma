@@ -11,10 +11,15 @@
     transition-property: opacity
     height: 100vh
     background-color: black
+    .arrows-wrap
+      position: relative
+      top: 100%
     .item
       transition-property: opacity
       text-align: center
       height: 100vh
+      position: absolute
+      width: 100%
       &:after
         opacity: .8
         background-color: rgba(0, 0, 0, 0.7)
@@ -27,6 +32,8 @@
         position: absolute
         z-index: 0
       .item-content-wrap
+        background-position: center
+        background-size: cover
         display: flex
         height: 100%
         width: 100%
@@ -60,7 +67,7 @@
       color: #fff
       opacity: 0.75
     .carousel-control
-      z-index: 2
+      z-index: 100
   ol.carousel-indicators
     bottom: -15px
     li,
