@@ -27,7 +27,11 @@ if ( ! function_exists( 'imma_blog_section' ) ) {
 
 	<?php }
 }
-add_action( 'imma_sections', 'imma_blog_section' );
+
+if ( function_exists( 'imma_blog_section' ) ) {
+	$section_priority = apply_filters( 'imma_section_priority', 70, 'imma_blog_section' );
+	add_action( 'imma_sections', 'imma_blog_section', absint( $section_priority ) );
+}
 
 /**
  * Display blog content.
