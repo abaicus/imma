@@ -28,10 +28,7 @@ if ( ! function_exists( 'imma_services' ) ) :
 	}
 endif;
 
-if ( function_exists( 'imma_services' ) ) {
-	$section_priority = apply_filters( 'imma_section_priority', 10, 'imma_services' );
-	add_action( 'imma_sections', 'imma_services', absint( $section_priority ) );
-}
+
 
 /**
  * Display main content of services section
