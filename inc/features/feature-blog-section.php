@@ -98,6 +98,43 @@ if ( ! function_exists( 'imma_blog_customize_register' ) ) :
 endif;
 
 
+/**
+ * Register controls for selective refresh
+ * @param WP_Customize_Manager $wp_customize Customizer
+ */
+function imma_register_blog_partials( $wp_customize ){
+	// Abort if selective refresh is not available.
+	if ( ! isset( $wp_customize->selective_refresh ) ) {
+		return;
+	}
+
+	$wp_customize->selective_refresh->add_partial( 'imma_blog_title', array(
+		'selector'        => '.blog-section .section-title',
+		'settings'        => 'imma_blog_title',
+		'render_callback' => 'imma_blog_title_render_callback',
+	) );
+
+	$wp_customize->selective_refresh->add_partial( 'imma_blog_subtitle', array(
+		'selector'        => '.blog-section .section-subtitle',
+		'settings'        => 'imma_blog_subtitle',
+		'render_callback' => 'imma_blog_subtitle_render_callback',
+	) );
+
+	$wp_customize->selective_refresh->add_partial( 'imma_blog_post_number', array(
+		'selector'        => '.blog-section .section-content',
+		'settings'        => array( 'imma_blog_post_number', 'imma_blog_categories_multiple_select'),
+		'render_callback' => 'imma_display_blog_content',
+	) );
+
+	$wp_customize->selective_refresh->add_partial( 'imma_blog_categories_multiple_select', array(
+		'selector'        => '.blog-section .section-content',
+		'settings'        => array( 'imma_blog_post_number', 'imma_blog_categories_multiple_select'),
+		'render_callback' => 'imma_display_blog_content',
+	) );
+}
+add_action( 'customize_register', 'imma_register_blog_partials' );
+
+
 if ( ! function_exists( 'imma_sanitize_multiselect' ) ) :
 	/**
 	 * Sanitize multi select output.
@@ -134,4 +171,20 @@ function imma_get_categories( $placeholder ){
 	}
 	$imma_categories_array['none'] = __( 'None', 'imma' );
 	return $imma_categories_array;
+}
+
+/**
+ * Callback function for blog title
+ * @return string
+ */
+function imma_blog_title_render_callback(){
+	return get_theme_mod('imma_blog_title');
+}
+
+/**
+ * Callback function for blog subtitle
+ * @return string
+ */
+function imma_blog_subtitle_render_callback(){
+	return get_theme_mod('imma_blog_subtitle');
 }

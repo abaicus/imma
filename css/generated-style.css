@@ -610,12 +610,19 @@ h6 {
   .blog-section .blog-post, .blog-section .blog-post-image, .blog-section .blog-post-content {
     display: block; }
   .blog-section .blog-post-content {
-    float: left; }
+    float: none;
+    display: table-cell;
+    vertical-align: middle; }
   .blog-section .blog-post-image {
     padding-left: 15px;
-    padding-right: 15px; }
+    padding-right: 15px;
+    text-align: center;
+    float: none;
+    display: table-cell;
+    vertical-align: middle; }
   .blog-section .blog-post {
-    margin-bottom: 100px; } }
+    margin-bottom: 100px;
+    display: table; } }
 
 .sponsor-item {
   margin-bottom: 40px;

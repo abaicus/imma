@@ -27,7 +27,7 @@ class Capri_Customize_Control_Multiple_Select extends WP_Customize_Control {
 	 * Enqueue necessary script
 	 */
 	public function enqueue() {
-		wp_enqueue_script( 'customizer-repeater-script', get_template_directory_uri() . '/inc/customizer-multiple-choice/js/customizer_multiple_choice.js', array( 'jquery' ), '1.0.1', true );
+		wp_enqueue_script( 'customizer-multiple-choice-script', get_template_directory_uri() . '/inc/customizer-modules/customizer-multiple-choice/js/customizer_multiple_choice.js', array( 'jquery' ), '1.0.1', true );
 	}
 
 
