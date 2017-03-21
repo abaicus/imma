@@ -204,7 +204,6 @@ function imma_filter_features( $array ) {
 		'/sections/portfolio-section',
 		'/features/feature-portfolio-section',
 
-
 		'/sections/stats-section',
 		'/features/feature-stats-section',
 
