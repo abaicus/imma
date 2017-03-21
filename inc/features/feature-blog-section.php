@@ -22,7 +22,7 @@ if ( ! function_exists( 'imma_blog_customize_register' ) ) :
 		$wp_customize->add_section( 'imma_blog', array(
 			'title' => esc_html__( 'Blog', 'imma' ),
 			'panel' => 'imma_frontpage_sections',
-			'priority' => apply_filters( 'imma_section_priority', 10, 'imma_blog' ),
+			'priority' => apply_filters( 'imma_section_priority', 70, 'imma_blog' ),
 		));
 
 
@@ -73,7 +73,7 @@ if ( ! function_exists( 'imma_blog_customize_register' ) ) :
 		$wp_customize->add_control( 'imma_blog_post_number', array(
 			'label' => esc_html__( 'Number of posts', 'imma' ),
 			'section' => 'imma_blog',
-			'priority' => 10,
+			'priority' => 15,
 			'type' => 'number',
 			'input_attrs'    => array(
 				'min'  => 0,
@@ -87,6 +87,7 @@ if ( ! function_exists( 'imma_blog_customize_register' ) ) :
 		$wp_customize->add_control( new Capri_Customize_Control_Multiple_Select( $wp_customize, 'imma_blog_categories_multiple_select', array(
 			'label'    => esc_html__( 'Categories selector', 'imma' ),
 			'section'  => 'imma_blog',
+			'priority' => 20,
 			'type'     => 'multiple-select',
 			'choices'  => imma_get_categories( false ),
 		)));
