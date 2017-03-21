@@ -78,6 +78,9 @@ function imma_setup() {
 		'flex-width'  => true,
 		'header-text' => array( 'site-title', 'site-description' ),
 	) );
+
+	// Image sizes.
+	add_image_size( 'imma-portfolio', 560, 380, true );
 }
 endif;
 add_action( 'after_setup_theme', 'imma_setup' );
@@ -194,6 +197,7 @@ function imma_filter_features( $array ) {
 		'/features/feature-about-section',
 
 		'/sections/portfolio-section',
+		'/features/feature-portfolio-section',
 
 
 		'/sections/stats-section',

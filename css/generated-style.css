@@ -499,7 +499,8 @@ h6 {
     width: 50%; } }
 
 .portfolio img {
-  max-width: 100%; }
+  max-width: 100%;
+  float: left; }
 
 .portfolio .card-img-overlay {
   opacity: 0;
