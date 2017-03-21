@@ -155,3 +155,11 @@ function imma_display_section_head( $title, $subtitle ){
 	</div>
 	<?php
 }
+
+/**
+ * Excerpt length.
+ */
+function imma_excerpt_length( $length ) {
+	return 270;
+}
+add_filter( 'excerpt_length', 'imma_excerpt_length', 999 );

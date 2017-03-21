@@ -49,6 +49,11 @@ function imma_setup() {
 		'primary' => esc_html__( 'Primary', 'imma' ),
 	) );
 
+	/**
+	 * Image sizes
+	 */
+	add_image_size( 'imma-blog-size', 600, 400 );
+
 	/*
 	 * Switch default core markup for search form, comment form, and comments
 	 * to output valid HTML5.
