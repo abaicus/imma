@@ -173,7 +173,10 @@ jQuery(document).ready(function () {
     theme_conrols.on('click', '.customizer-repeater-customize-control-title', function () {
         jQuery(this).next().slideToggle('medium', function () {
             if (jQuery(this).is(':visible')){
+                jQuery(this).prev().addClass('repeater-expanded');
                 jQuery(this).css('display', 'block');
+            } else {
+                jQuery(this).prev().removeClass('repeater-expanded');
             }
         });
     });
@@ -221,7 +224,7 @@ jQuery(document).ready(function () {
         var id = 'customizer-repeater-' + customizer_repeater_uniqid();
         if (typeof th !== 'undefined') {
             /* Clone the first box*/
-            var field = th.find('.customizer-repeater-general-control-repeater-container:first').clone();
+            var field = th.find('.customizer-repeater-general-control-repeater-container:first').clone( true, true );
 
             if (typeof field !== 'undefined') {
                 /*Set the default value for choice between image and icon to icon*/
@@ -239,10 +242,7 @@ jQuery(document).ready(function () {
                 field.find('.social-repeater-general-control-remove-field').show();
 
                 /* Empty control for icon */
-                field.find( '.icp' ).iconpicker().on( 'iconpickerUpdated', function() {
-                    jQuery( this ).trigger( 'change' );
-                } );
-                field.find( '.input-group-addon' ).find('.fa').attr('class','fa');
+                field.find('.input-group-addon').find('.fa').attr('class', 'fa');
 
 
                 /*Remove all repeater fields except first one*/
@@ -294,8 +294,11 @@ jQuery(document).ready(function () {
 
     theme_conrols.on('click', '.social-repeater-general-control-remove-field', function () {
         if (typeof    jQuery(this).parent() !== 'undefined') {
-            jQuery(this).parent().parent().remove();
-            customizer_repeater_refresh_general_control_values();
+            jQuery(this).parent().hide(500, function(){
+                jQuery(this).parent().remove();
+                customizer_repeater_refresh_general_control_values();
+
+            });
         }
         return false;
     });
@@ -326,6 +329,7 @@ jQuery(document).ready(function () {
     /*Drag and drop to change icons order*/
 
     jQuery('.customizer-repeater-general-control-droppable').sortable({
+        axis: 'y',
         update: function () {
             customizer_repeater_refresh_general_control_values();
         }
@@ -338,9 +342,8 @@ jQuery(document).ready(function () {
         var th = jQuery(this).parent();
         var id = 'customizer-repeater-social-repeater-' + customizer_repeater_uniqid();
         if (typeof th !== 'undefined') {
-            var field = th.find('.customizer-repeater-social-repeater-container:first').clone();
+            var field = th.find('.customizer-repeater-social-repeater-container:first').clone( true, true );
             if (typeof field !== 'undefined') {
-                field.find( '.icp' ).iconpicker();
                 field.find( '.icp' ).val('');
                 field.find( '.input-group-addon' ).find('.fa').attr('class','fa');
                 field.find('.social-repeater-remove-social-item').show();
@@ -368,13 +371,12 @@ jQuery(document).ready(function () {
         return false;
     });
 
-    jQuery('.icp').iconpicker();
-    theme_conrols.on( 'iconpickerUpdated','.icp', function(event) {
+    theme_conrols.on('change', '.customizer-repeater-social-repeater-container .icp', function (event) {
         event.preventDefault();
-        var th = jQuery(this).parent().parent().parent();
-        customizer_repeater_refresh_social_icons(th);
+        var repeater = jQuery(this).parent().parent().parent();
+        customizer_repeater_refresh_social_icons(repeater);
         return false;
-    } );
+    });
 
 });
 
