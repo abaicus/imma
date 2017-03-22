@@ -34,7 +34,6 @@ if ( function_exists( 'imma_stats' ) ) {
 	$section_priority = apply_filters( 'imma_section_priority', 50, 'imma_stats' );
 	add_action( 'imma_sections', 'imma_stats', absint( $section_priority ) );
 }
-
 /**
  * Get stats content
  */
