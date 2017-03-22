@@ -7,8 +7,8 @@
  *
  */
 
-if ( ! function_exists( 'imma_blog_section' ) ) {
-	function imma_blog_section() {
+if ( ! function_exists( 'imma_blog' ) ) {
+	function imma_blog() {
 		$imma_blog_hide = get_theme_mod('imma_blog_hide');
 		if( (bool) $imma_blog_hide === true ){
 			return;
@@ -28,9 +28,9 @@ if ( ! function_exists( 'imma_blog_section' ) ) {
 	<?php }
 }
 
-if ( function_exists( 'imma_blog_section' ) ) {
-	$section_priority = apply_filters( 'imma_section_priority', 70, 'imma_blog_section' );
-	add_action( 'imma_sections', 'imma_blog_section', absint( $section_priority ) );
+if ( function_exists( 'imma_blog' ) ) {
+	$section_priority = apply_filters( 'imma_section_priority', 60, 'imma_blog' );
+	add_action( 'imma_sections', 'imma_blog', absint( $section_priority ) );
 }
 
 /**

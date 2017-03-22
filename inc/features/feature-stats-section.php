@@ -22,7 +22,7 @@ if ( ! function_exists( 'imma_stats_customize_register' ) ) :
 		$wp_customize->add_section( 'imma_stats', array(
 			'title' => esc_html__( 'Stats', 'imma' ),
 			'panel' => 'imma_frontpage_sections',
-			'priority' => apply_filters( 'imma_section_priority', 10, 'imma_stats' ),
+			'priority' => apply_filters( 'imma_section_priority', 50, 'imma_stats' ),
 		));
 
 

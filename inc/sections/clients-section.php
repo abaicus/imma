@@ -7,11 +7,11 @@
  *
  */
 
-if ( ! function_exists( 'imma_clients_section' ) ) {
+if ( ! function_exists( 'imma_clients' ) ) {
 	/**
 	 * Clients section
 	 */
-	function imma_clients_section() {
+	function imma_clients() {
 		$imma_clients_hide = get_theme_mod('imma_clients_hide');
 		if( (bool) $imma_clients_hide === true ){
 			return;
@@ -29,7 +29,11 @@ if ( ! function_exists( 'imma_clients_section' ) ) {
 
 	<?php }
 }
-add_action( 'imma_sections', 'imma_clients_section' );
+
+if ( function_exists( 'imma_clients' ) ) {
+	$section_priority = apply_filters( 'imma_section_priority', 70, 'imma_clients' );
+	add_action( 'imma_sections', 'imma_clients', absint( $section_priority ) );
+}
 
 /**
  * Get clients content

@@ -7,8 +7,8 @@
  *
  */
 
-if ( ! function_exists( 'imma_portfolio_section' ) ) {
-	function imma_portfolio_section() { ?>
+if ( ! function_exists( 'imma_portfolio' ) ) {
+	function imma_portfolio() { ?>
 
 
 		<section id="portfolio" class="portfolio">
@@ -97,4 +97,8 @@ if ( ! function_exists( 'imma_portfolio_section' ) ) {
 
 	<?php }
 }
-add_action( 'imma_sections', 'imma_portfolio_section' );
+
+if ( function_exists( 'imma_portfolio' ) ) {
+	$section_priority = apply_filters( 'imma_section_priority', 40, 'imma_portfolio' );
+	add_action( 'imma_sections', 'imma_portfolio', absint( $section_priority ) );
+}

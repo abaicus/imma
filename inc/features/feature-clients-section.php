@@ -22,7 +22,7 @@ if ( ! function_exists( 'imma_clients_customize_register' ) ) :
 		$wp_customize->add_section( 'imma_clients', array(
 			'title' => esc_html__( 'Clients', 'imma' ),
 			'panel' => 'imma_frontpage_sections',
-			'priority' => apply_filters( 'imma_section_priority', 10, 'imma_clients' ),
+			'priority' => apply_filters( 'imma_section_priority', 70, 'imma_clients' ),
 		));
 
 

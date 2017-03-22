@@ -7,8 +7,8 @@
  *
  */
 
-if ( ! function_exists( 'imma_stats_section' ) ) {
-	function imma_stats_section() {
+if ( ! function_exists( 'imma_stats' ) ) {
+	function imma_stats() {
 		$imma_stats_hide = get_theme_mod( 'imma_stats_hide' );
 		if( (bool) $imma_stats_hide === true ){
 			return;
@@ -29,7 +29,11 @@ if ( ! function_exists( 'imma_stats_section' ) ) {
 
 	<?php }
 }
-add_action( 'imma_sections', 'imma_stats_section' );
+
+if ( function_exists( 'imma_stats' ) ) {
+	$section_priority = apply_filters( 'imma_section_priority', 50, 'imma_stats' );
+	add_action( 'imma_sections', 'imma_stats', absint( $section_priority ) );
+}
 
 /**
  * Get stats content
