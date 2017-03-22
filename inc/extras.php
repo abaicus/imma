@@ -163,3 +163,19 @@ function imma_excerpt_length( $length ) {
 	return 270;
 }
 add_filter( 'excerpt_length', 'imma_excerpt_length', 999 );
+
+/**
+ * Replaces "[...]" (appended to automatically generated excerpts) with ... and
+ * a 'Continue reading' link.
+ *
+ * @return string 'Continue reading' link prepended with an ellipsis.
+ */
+function imma_excerpt_more() {
+	$link = sprintf( ' <span class="more-link-wrap"><a href="%1$s" class="more-link">%2$s</a></span>',
+		esc_url( get_permalink( get_the_ID() ) ),
+		/* translators: %s: Name of current post */
+		sprintf( __( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'capri-pro' ), get_the_title( get_the_ID() ) )
+	);
+	return '&hellip; ' . $link;
+}
+add_filter( 'excerpt_more', 'imma_excerpt_more' );

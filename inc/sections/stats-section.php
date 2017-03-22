@@ -8,7 +8,7 @@
  */
 
 if ( ! function_exists( 'imma_stats' ) ) {
-	function imma_stats_section() {
+	function imma_stats() {
 		$imma_stats_hide = get_theme_mod( 'imma_stats_hide' );
 		if( (bool) $imma_stats_hide === true ){
 			return;

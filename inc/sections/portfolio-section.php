@@ -95,3 +95,7 @@ function imma_get_portfolio_content() {
 	}
 }
 
+if ( function_exists( 'imma_portfolio' ) ) {
+	$section_priority = apply_filters( 'imma_section_priority', 40, 'imma_portfolio' );
+	add_action( 'imma_sections', 'imma_portfolio', absint( $section_priority ) );
+}

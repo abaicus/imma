@@ -22,7 +22,7 @@ if ( ! function_exists( 'imma_blog_customize_register' ) ) :
 		$wp_customize->add_section( 'imma_blog', array(
 			'title' => esc_html__( 'Blog', 'imma' ),
 			'panel' => 'imma_frontpage_sections',
-			'priority' => apply_filters( 'imma_section_priority', 70, 'imma_blog' ),
+			'priority' => apply_filters( 'imma_section_priority', 60, 'imma_blog' ),
 		));
 
 
