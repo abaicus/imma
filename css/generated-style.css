@@ -109,15 +109,11 @@ h6 {
 .customize-partial-edit-shortcut-imma_slider_arrows {
   bottom: 150px; }
 
-.customize-partial-edit-shortcut-imma_stats_content {
-  left: 250px; }
-
-.customize-partial-edit-shortcut-imma_video_content {
-  right: 5px;
-  top: 5px; }
+.site-header.transparent-header {
+  background: transparent; }
 
 .site-header {
-  background: transparent;
+  background: rgba(0, 0, 0, 0.75);
   position: fixed;
   top: 0;
   width: 100%;
@@ -393,7 +389,7 @@ h6 {
   .cover-caption .btn {
     margin-top: 50px; }
 
-.bg-inverse {
+.transparent-header.bg-inverse {
   background-color: rgba(0, 0, 0, 0.75) !important; }
 
 .card {
@@ -784,9 +780,6 @@ h6 {
       display: inline-block; }
 
 .video {
-  background-color: #000;
-  color: #fff; }
-  .video .YTPOverlay {
-    background-color: rgba(0, 0, 0, 0.7); }
+  background-color: #000; }
 
 /*# sourceMappingURL=generated-style.css.map */

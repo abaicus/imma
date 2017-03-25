@@ -25,7 +25,7 @@
                         if(result.post_thumbnail !== '' && result.post_thumbnail !== 'undefined'){
                             wp.customize.instance(requestpost.thumbnail_control).set(result.post_thumbnail);
                             var html = '<label for="imma_feature_thumbnail-button">' +
-                                '<span class="customize-control-title">About background</span>' +
+                                '<span class="customize-control-title"> + requestpost.thumbnail_label + </span>' +
                                 '</label>' +
                                 '<div class="attachment-media-view attachment-media-view-image landscape">' +
                                 '<div class="thumbnail thumbnail-image">' +

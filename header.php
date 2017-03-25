@@ -25,7 +25,19 @@
 	<div class="site-inner">
 		<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'imma' ); ?></a>
 
-		<header id="masthead" class="site-header" role="banner">
+		<?php
+		$transparent_background = false;
+		if ( is_front_page() && is_home() ) {
+			// Default homepage
+			$transparent_background = false;
+		} elseif ( is_front_page() ) {
+			// static homepage
+			$transparent_background = true;
+		} elseif ( is_home() ) {
+			// blog page
+			$transparent_background = false;
+		} ?>
+		<header id="masthead" class="site-header <?php echo $transparent_background ? 'transparent-header' : ''; ?>" role="banner">
 			<div class="container header-container">
 				<div class="site-header-main">
 					<div class="site-branding">
