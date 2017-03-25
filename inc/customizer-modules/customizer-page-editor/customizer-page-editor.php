@@ -80,7 +80,7 @@ function imma_sync_control_from_page( $post_id, $ajax_call = false ) {
 		if ( ! empty( $frontpage_id ) ) {
 			$content_post = get_post( $frontpage_id );
 			$content      = $content_post->post_content;
-			$content      = apply_filters( 'the_content', $content );
+			$content      = apply_filters( 'imma_text', $content );
 			$content      = str_replace( ']]>', ']]&gt;', $content );
 		}
 		set_theme_mod( 'imma_page_editor', $content );
@@ -113,3 +113,14 @@ function imma_ajax_call() {
 	die();
 }
 add_action( 'wp_ajax_imma_ajax_call', 'imma_ajax_call' );
+
+
+/**
+ * Filters for text format
+ */
+add_filter( 'imma_text', 'wptexturize' );
+add_filter( 'imma_text', 'convert_smilies' );
+add_filter( 'imma_text', 'convert_chars' );
+add_filter( 'imma_text', 'wpautop' );
+add_filter( 'imma_text', 'shortcode_unautop' );
+add_filter( 'imma_text', 'do_shortcode' );

@@ -32,6 +32,20 @@ class Imma_Page_Editor extends WP_Customize_Control {
 	private $include_admin_print_footer = false;
 
 	/**
+	 * Flag to load teeny.
+	 *
+	 * @var bool|mixed
+	 */
+	private $teeny = false;
+
+	/**
+	 * Label after ajax reload/
+	 *
+	 * @var string
+	 */
+	public $label = '';
+
+	/**
 	 * Imma_Page_Editor constructor.
 	 *
 	 * @param WP_Customize_Manager $manager Manager.
@@ -46,6 +60,12 @@ class Imma_Page_Editor extends WP_Customize_Control {
 		if ( ! empty( $args['include_admin_print_footer'] ) ) {
 			$this->include_admin_print_footer = $args['include_admin_print_footer'];
 		}
+		if ( ! empty( $args['teeny'] ) ) {
+			$this->teeny = $args['teeny'];
+		}
+		if( !empty( $args['label'] ) ){
+			$this->label = $args['label'];
+		}
 	}
 
 	/**
@@ -59,6 +79,7 @@ class Imma_Page_Editor extends WP_Customize_Control {
 				'ajaxurl'           => admin_url( 'admin-ajax.php' ),
 				'thumbnail_control' => 'imma_feature_thumbnail',
 				'editor_control'    => 'imma_page_editor',
+				'thumbnail_label'   => $this->label,
 			) );
 		}
 	}
@@ -75,8 +96,7 @@ class Imma_Page_Editor extends WP_Customize_Control {
 		<?php
 		$settings = array(
 			'textarea_name' => $this->id,
-			'drag_drop_upload' => false,
-			'teeny' => true,
+			'teeny' => $this->teeny,
 		);
 		$control_content = $this->value();
 		$frontpage_id = get_option( 'page_on_front' );
@@ -84,7 +104,7 @@ class Imma_Page_Editor extends WP_Customize_Control {
 		if ( ! empty( $frontpage_id ) ) {
 			$content_post = get_post( $frontpage_id );
 			$page_content = $content_post->post_content;
-			$page_content = apply_filters( 'the_content', $page_content );
+			$page_content = apply_filters( 'imma_text', $page_content );
 			$page_content = str_replace( ']]>', ']]&gt;', $page_content );
 		}
 
