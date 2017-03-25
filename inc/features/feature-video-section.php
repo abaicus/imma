@@ -62,15 +62,14 @@ function imma_video_customize_register( $wp_customize ) {
 		'transport'         => $selective_refresh ? 'postMessage' : 'refresh',
 	) );
 	$wp_customize->add_control( 'imma_video_padding', array(
-		'type'        => 'range',
+		'type'        => 'number',
 		'section'     => 'imma_video',
-		'label'       => __( 'Padding', 'shop-isle' ),
+		'label'       => __( 'Height', 'imma' ),
 		'priority'    => 7,
 		'input_attrs' => array(
 			'min'    => 100,
 			'max'    => 500,
 			'step'   => 5,
-			'suffix' => 'px',
 		),
 	) );
 
@@ -88,13 +87,12 @@ function imma_video_customize_register( $wp_customize ) {
 		'sanitize_callback' => 'wp_kses_post',
 		'transport'         => $selective_refresh ? 'postMessage' : 'refresh',
 	) );
-	$wp_customize->add_control( 'imma_video_text', array(
+	$wp_customize->add_control( new Imma_Page_Editor( $wp_customize, 'imma_video_text', array(
 		'label'       => __( 'Text', 'imma' ),
 		'description' => __( 'You can also use html basic tags here.', 'imma' ),
 		'section'     => 'imma_video',
-		'type'        => 'textarea',
 		'priority'    => 15,
-	) );
+	) ) );
 }
 add_action( 'customize_register', 'imma_video_customize_register' );
 /**
@@ -107,6 +105,16 @@ function imma_register_video_partials( $wp_customize ) {
 	if ( ! isset( $wp_customize->selective_refresh ) ) {
 		return;
 	}
-}
 
+	$wp_customize->selective_refresh->add_partial( 'imma_video_text', array(
+		'selector'        => '.video-section-content',
+		'settings'        => array( 'imma_video_text' ),
+		'render_callback' => 'imma_video_text_callback',
+	) );
+}
 add_action( 'customize_register', 'imma_register_video_partials' );
+
+
+function imma_video_text_callback() {
+	return get_theme_mod( 'imma_video_text' );
+}

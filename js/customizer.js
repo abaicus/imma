@@ -39,4 +39,26 @@
 			}
 		} );
 	} );
+
+	wp.customize('imma_video_mute_toggle', function (value) {
+		var selector = $('.video-player');
+		value.bind(function () {
+			selector.YTPToggleVolume();
+		} );
+	} );
+
+	wp.customize('imma_video_link', function (value) {
+		var selector = $('.video-player');
+		value.bind(function (to) {
+			selector.YTPChangeMovie({videoURL:to});
+		} );
+	} );
+
+	wp.customize('imma_video_padding', function (value) {
+		var selector = $('.video');
+		value.bind(function (to) {
+			$(window).resize();
+			$(selector).css('padding', to +'px 0');
+		} );
+	} );
 } )( jQuery );

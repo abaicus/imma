@@ -109,6 +109,13 @@ h6 {
 .customize-partial-edit-shortcut-imma_slider_arrows {
   bottom: 150px; }
 
+.customize-partial-edit-shortcut-imma_stats_content {
+  left: 250px; }
+
+.customize-partial-edit-shortcut-imma_video_content {
+  right: 5px;
+  top: 5px; }
+
 .site-header {
   background: transparent;
   position: fixed;
@@ -777,6 +784,9 @@ h6 {
       display: inline-block; }
 
 .video {
-  background-color: #000; }
+  background-color: #000;
+  color: #fff; }
+  .video .YTPOverlay {
+    background-color: rgba(0, 0, 0, 0.7); }
 
 /*# sourceMappingURL=generated-style.css.map */
