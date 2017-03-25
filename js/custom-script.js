@@ -70,6 +70,7 @@ jQuery(document).ready(function(){
 
         return this;
     };
+
 })(jQuery);
 
 jQuery('#myCarousel').bcSwipe({ threshold: 50 });

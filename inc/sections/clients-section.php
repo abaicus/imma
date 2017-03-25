@@ -31,7 +31,7 @@ if ( ! function_exists( 'imma_clients' ) ) {
 }
 
 if ( function_exists( 'imma_clients' ) ) {
-	$section_priority = apply_filters( 'imma_section_priority', 70, 'imma_clients' );
+	$section_priority = apply_filters( 'imma_section_priority', 80, 'imma_clients' );
 	add_action( 'imma_sections', 'imma_clients', absint( $section_priority ) );
 }
 

@@ -19,7 +19,7 @@ if ( ! function_exists( 'imma_services' ) ) :
 		<section id="features" class="features">
 			<div class="container">
 				<?php imma_display_section_head( 'imma_services_title', 'imma_services_subtitle' ); ?>
-				<div class="row section-content">
+				<div class="row row-centered section-content">
 					<?php imma_get_services_content(); ?>
 				</div>
 			</div>

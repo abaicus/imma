@@ -21,7 +21,7 @@ if ( ! function_exists( 'imma_stats' ) ) {
 				<?php
 			} ?>
 			<div class="container">
-				<div class="row section-content">
+				<div class="row row-centered section-content">
 					<?php imma_get_stats_content(); ?>
 				</div>
 			</div>
@@ -54,7 +54,7 @@ function imma_get_stats_content(){
 					$color = 'style="color:'.esc_attr($color).'"';
 				}?>
 
-				<div class="col-md-3 col-sm-6 col-xs-12 stat-col">
+				<div class="col-md-3 col-sm-6 col-xs-12 stat-col col-centered">
 					<?php
 					if( !empty( $icon ) ){
 						if( !empty( $link ) ){ ?>

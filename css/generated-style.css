@@ -6,7 +6,7 @@ html, body {
   height: 100%;
   font-family: “Segoe UI”, sans-serif; }
 
-.features, .ribbon, .product, .portfolio, .stats, .blog-section, .clients {
+.features, .ribbon, .product, .portfolio, .stats, .blog-section, .clients, .video {
   padding: 100px 0; }
 
 html {
@@ -88,6 +88,19 @@ h6 {
 .btn-lg {
   font-size: 20px;
   padding: 12px 24px; }
+
+.row-centered {
+  text-align: center; }
+
+.col-centered {
+  display: inline-block;
+  float: none;
+  text-align: left;
+  margin-right: -4px; }
+
+@media (max-width: 991px) {
+  .col-centered {
+    display: block; } }
 
 .customize-partial-edit-shortcut-imma_slider_content {
   left: 20vw;
@@ -379,7 +392,7 @@ h6 {
 .card {
   position: relative;
   display: block;
-  margin-bottom: 0.75rem;
+  margin-bottom: 30px;
   background-color: #fff;
   border-radius: 0.25rem;
   border: 1px solid #e0e0e0; }
@@ -456,7 +469,7 @@ h6 {
 .product .product-content {
   margin: 0 45px;
   padding: 35px 35px;
-  background: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.7);
   color: #373a3c; }
 
 .container-half-left {
@@ -499,7 +512,7 @@ h6 {
     width: 50%; } }
 
 .portfolio img {
-  max-width: 100%;
+  width: 100%;
   float: left; }
 
 .portfolio .card-img-overlay {
@@ -507,11 +520,11 @@ h6 {
   background: rgba(0, 0, 0, 0.7); }
 
 .portfolio .card-caption-wrapper {
-  bottom: 40%;
-  top: auto;
+  bottom: 50%;
   position: absolute;
   left: 0;
-  right: 0; }
+  right: 0;
+  transform: translateY(50%); }
 
 .portfolio .card {
   overflow: hidden; }
@@ -581,7 +594,7 @@ h6 {
 
 @media (min-width: 992px) {
   .stat-col {
-    margin-bottom: 0; } }
+    margin-bottom: 30px; } }
 
 .blog-section img {
   max-width: 100%; }
@@ -646,6 +659,10 @@ h6 {
   display: table;
   width: 100%; }
 
+@media (max-width: 992px) {
+  .sponsor-item {
+    float: left; } }
+
 .site-footer {
   padding: 100px 0;
   background: #444; }
@@ -657,13 +674,15 @@ h6 {
         color: #fff;
         text-decoration: none; }
 
+.admin-bar .carousel-fade .carousel-inner {
+  height: 97vh; }
+
 .carousel-fade {
   position: relative;
   top: 0;
   left: 0;
   z-index: 0;
   width: 100%;
-  height: 100vh;
   color: #fff; }
   .carousel-fade .carousel-inner {
     transition-property: opacity;
@@ -756,5 +775,8 @@ h6 {
       margin-top: -10px;
       z-index: 5;
       display: inline-block; }
+
+.video {
+  background-color: #000; }
 
 /*# sourceMappingURL=generated-style.css.map */

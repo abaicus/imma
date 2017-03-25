@@ -17,8 +17,6 @@ if ( class_exists( 'Jetpack' ) ) {
 					return;
 				}
 				?>
-
-
 				<section id="portfolio" class="portfolio">
 					<div class="container">
 						<?php imma_display_section_head( 'imma_portfolio_title', 'imma_portfolio_subtitle' );
@@ -27,7 +25,6 @@ if ( class_exists( 'Jetpack' ) ) {
 						?>
 					</div>
 				</section>
-
 			<?php }
 		}
 	}
@@ -68,6 +65,7 @@ function imma_get_portfolio_content() {
 						     alt="<?php the_title_attribute(); ?>">
 						<div class="card-img-overlay text-center">
 							<div class="card-caption-wrapper">
+
 								<h4 class="card-title lead"><?php the_title_attribute(); ?></h4>
 								<?php $portfolio_categories = get_the_terms( $post->ID , 'jetpack-portfolio-type' );
 								if ( ! empty( $portfolio_categories ) ) { ?>
