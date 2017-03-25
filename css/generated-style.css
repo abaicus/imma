@@ -109,8 +109,11 @@ h6 {
 .customize-partial-edit-shortcut-imma_slider_arrows {
   bottom: 150px; }
 
+.site-header.transparent-header {
+  background: transparent; }
+
 .site-header {
-  background: transparent;
+  background: rgba(0, 0, 0, 0.75);
   position: fixed;
   top: 0;
   width: 100%;
@@ -386,7 +389,7 @@ h6 {
   .cover-caption .btn {
     margin-top: 50px; }
 
-.bg-inverse {
+.transparent-header.bg-inverse {
   background-color: rgba(0, 0, 0, 0.75) !important; }
 
 .card {
