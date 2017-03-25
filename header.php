@@ -35,7 +35,7 @@
 			$transparent_background = true;
 		} elseif ( is_home() ) {
 			// blog page
-			$transparent_background = false;
+			$transparent_background = ! get_theme_mod( 'imma_blog_index_title_hide', false );
 		} ?>
 		<header id="masthead" class="site-header <?php echo $transparent_background ? 'transparent-header' : ''; ?>" role="banner">
 			<div class="container header-container">

@@ -12,12 +12,17 @@
  * @package imma
  */
 
-get_header(); ?>
+get_header();
+
+$imma_blog_index_title_hide = get_theme_mod( 'imma_blog_index_title_hide', false );
+	if( (bool)$imma_blog_index_title_hide === false ) {
+		imma_page_header( 'blog' );
+	} ?>
 
 	<div class="container">
 		<div class="row">
 
-			<div id="primary" class="col-xs-12 col-sm-8 content-area">
+			<div id="primary" class="col-md-12 content-area">
 				<main id="main" class="site-main" role="main">
 
 				<?php
@@ -43,7 +48,7 @@ get_header(); ?>
 
 					endwhile;
 
-					the_posts_navigation();
+					the_posts_pagination();
 
 				else :
 

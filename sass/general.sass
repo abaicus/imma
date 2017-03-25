@@ -11,10 +11,6 @@ $font-size-h4: 24px !default
 $font-size-h5: 20px !default
 $font-size-body: 16px !default
 
-
-*
-  transition: all .3s ease
-
 html, body
   height: 100%
   font-family: “Segoe UI”, sans-serif
@@ -51,6 +47,11 @@ h5
   font-size: $font-size-h5
 h6
   font-size: $font-size-body
+
+a,img
+  transition: all .3s ease
+a:hover
+  color: $accentColor
 
 .section-subtitle
   margin-bottom: 80px
@@ -111,6 +112,15 @@ h6
 @media (max-width: 991px)
   .col-centered
     display: block
+
+//Blog?!
+#primary
+  padding: 100px 0
+
+.more-link
+  margin-top: 50px
+  display: table
+  clear: both
 
 // Customizer Styles
 .customize-partial-edit-shortcut-imma_slider_content

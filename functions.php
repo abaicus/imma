@@ -84,7 +84,9 @@ function imma_setup() {
 		'header-text' => array( 'site-title', 'site-description' ),
 	) );
 
-	// Image sizes.
+	add_theme_support( 'header-image' );
+
+		// Image sizes.
 	add_image_size( 'imma-portfolio', 560, 380, true );
 }
 endif;

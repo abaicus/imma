@@ -1,0 +1,91 @@
+.shop-entry-header
+  min-height: 450px
+  padding: 200px 0
+  position: relative
+  background-size: cover
+  background-repeat: no-repeat
+  background-position: center center
+  &:after
+    opacity: .8
+    background-color: rgba(0, 0, 0, 0.7)
+    background-image: url('../img/bg_pattern_dots.png')
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    content: ""
+    position: absolute
+    z-index: 0
+
+  .shop-page-title-wrap
+    z-index: 1
+    position: relative
+    text-align: center
+    color: #fff
+
+    h2
+      font-size: 72px
+      font-weight: 300
+      margin-bottom: 20px
+
+
+.hentry
+  clear: both
+  display: table
+  margin-bottom: 50px
+
+  .entry-header, .entry-content
+    display: table-cell
+    vertical-align: middle
+    float: none
+    width: 50%
+
+  .entry-content.full-width-entry
+    width: 100%
+
+  .entry-header
+    text-align: center
+    &:hover .post-thumbnail-wrap > img
+      transform: scale(1.1)
+    .post-thumbnail-wrap
+      overflow: hidden
+  .post-title
+    font-weight: 300
+    line-height: 45px
+    margin-bottom: 20px
+    color: #666
+    &:after
+      @include title-line-after
+    a:hover
+      color: $accentColor
+
+  .index-post-meta
+    margin-bottom: 20px
+
+  .author, .categories-list
+    display: inline
+
+  .categories-list:before
+    content: " - "
+
+.categories-list .category-label:after
+  content: ", "
+.categories-list .category-label:last-child:after
+  content: " "
+
+.pagination
+  width: 100%
+  text-align: center
+  a, .current
+    padding: 0 5px 5px
+    margin: 0 15px
+  .prev
+    float: left
+    &:before
+      content: "\00ab  "
+  .next
+    float: right
+    &:after
+      content: "  \00bb"
+  .current
+    border-bottom: 2px solid $accentColor

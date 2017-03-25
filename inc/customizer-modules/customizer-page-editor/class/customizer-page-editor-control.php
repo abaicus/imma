@@ -24,14 +24,6 @@ class Imma_Page_Editor extends WP_Customize_Control {
 	private $needsync = false;
 
 	/**
-	 * Flag to do action admin_print_footer_scripts.
-	 * This needs to be true only for one instance.
-	 *
-	 * @var bool|mixed
-	 */
-	private $include_admin_print_footer = false;
-
-	/**
 	 * Flag to load teeny.
 	 *
 	 * @var bool|mixed
@@ -56,9 +48,6 @@ class Imma_Page_Editor extends WP_Customize_Control {
 		parent::__construct( $manager, $id, $args );
 		if ( ! empty( $args['needsync'] ) ) {
 			$this->needsync = $args['needsync'];
-		}
-		if ( ! empty( $args['include_admin_print_footer'] ) ) {
-			$this->include_admin_print_footer = $args['include_admin_print_footer'];
 		}
 		if ( ! empty( $args['teeny'] ) ) {
 			$this->teeny = $args['teeny'];
@@ -89,7 +78,7 @@ class Imma_Page_Editor extends WP_Customize_Control {
 	 * Render the content on the theme customizer page
 	 */
 	public function render_content() {
-		?>
+		static $i = 1;?>
 
 		<span class="customize-control-title"><?php echo esc_html( $this->label ); ?></span>
 		<input type="hidden" <?php $this->link(); ?> value="<?php echo esc_textarea( $this->value() ); ?>">
@@ -101,22 +90,23 @@ class Imma_Page_Editor extends WP_Customize_Control {
 		$control_content = $this->value();
 		$frontpage_id = get_option( 'page_on_front' );
 		$page_content = '';
-		if ( ! empty( $frontpage_id ) ) {
+		if ( ! empty( $frontpage_id ) && $this->needsync === true ) {
 			$content_post = get_post( $frontpage_id );
 			$page_content = $content_post->post_content;
 			$page_content = apply_filters( 'imma_text', $page_content );
 			$page_content = str_replace( ']]>', ']]&gt;', $page_content );
-		}
 
-		if ( $control_content !== $page_content ) {
-			$control_content = $page_content;
+			if ( $control_content !== $page_content ) {
+				$control_content = $page_content;
+			}
 		}
 
 		wp_editor( $control_content, $this->id, $settings );
 
-		if ( $this->include_admin_print_footer === true ) {
+		if( $i == 2){
 			do_action( 'admin_print_footer_scripts' );
 		}
+		$i++;
 
 	}
 }

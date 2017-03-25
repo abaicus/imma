@@ -14,11 +14,19 @@
     right: 0
     transform: translateY(50%)
 
+    .card-title
+      margin-bottom: 0
+      &:after
+        @include title-line-after
+        margin: 10px auto
+
   .card
     overflow: hidden
 
-  .card:hover > img
+  .card:hover img
     transform: scale(1.1)
 
   .card:hover > .card-img-overlay
     opacity: 1
+
+

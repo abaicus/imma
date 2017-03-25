@@ -1,7 +1,4 @@
 @charset "UTF-8";
-* {
-  transition: all .3s ease; }
-
 html, body {
   height: 100%;
   font-family: “Segoe UI”, sans-serif; }
@@ -43,6 +40,12 @@ h5 {
 
 h6 {
   font-size: 16px; }
+
+a, img {
+  transition: all .3s ease; }
+
+a:hover {
+  color: #f0ad4e; }
 
 .section-subtitle {
   margin-bottom: 80px; }
@@ -102,12 +105,27 @@ h6 {
   .col-centered {
     display: block; } }
 
+#primary {
+  padding: 100px 0; }
+
+.more-link {
+  margin-top: 50px;
+  display: table;
+  clear: both; }
+
 .customize-partial-edit-shortcut-imma_slider_content {
   left: 20vw;
   top: 20vh; }
 
 .customize-partial-edit-shortcut-imma_slider_arrows {
   bottom: 150px; }
+
+.customize-partial-edit-shortcut-imma_stats_content {
+  left: 250px; }
+
+.customize-partial-edit-shortcut-imma_video_content {
+  right: 5px;
+  top: 5px; }
 
 .site-header.transparent-header {
   background: transparent; }
@@ -528,11 +546,20 @@ h6 {
   left: 0;
   right: 0;
   transform: translateY(50%); }
+  .portfolio .card-caption-wrapper .card-title {
+    margin-bottom: 0; }
+    .portfolio .card-caption-wrapper .card-title:after {
+      display: inherit;
+      content: '';
+      border: 1px solid #f0ad4e;
+      width: 50px;
+      margin: 10px 0;
+      margin: 10px auto; }
 
 .portfolio .card {
   overflow: hidden; }
 
-.portfolio .card:hover > img {
+.portfolio .card:hover img {
   transform: scale(1.1); }
 
 .portfolio .card:hover > .card-img-overlay {
@@ -622,10 +649,16 @@ h6 {
 .blog-section .post-title {
   font-weight: 300;
   line-height: 45px;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
   color: #666; }
+  .blog-section .post-title:after {
+    display: inherit;
+    content: '';
+    border: 1px solid #f0ad4e;
+    width: 50px;
+    margin: 10px 0; }
 
-.blog-section .text-content {
+.blog-section p {
   color: #888;
   margin-bottom: 50px; }
 
@@ -780,6 +813,97 @@ h6 {
       display: inline-block; }
 
 .video {
-  background-color: #000; }
+  background-color: #000;
+  color: #fff; }
+  .video .YTPOverlay {
+    background-color: rgba(0, 0, 0, 0.7); }
+
+.shop-entry-header {
+  min-height: 450px;
+  padding: 200px 0;
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center; }
+  .shop-entry-header:after {
+    opacity: .8;
+    background-color: rgba(0, 0, 0, 0.7);
+    background-image: url("../img/bg_pattern_dots.png");
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: "";
+    position: absolute;
+    z-index: 0; }
+  .shop-entry-header .shop-page-title-wrap {
+    z-index: 1;
+    position: relative;
+    text-align: center;
+    color: #fff; }
+    .shop-entry-header .shop-page-title-wrap h2 {
+      font-size: 72px;
+      font-weight: 300;
+      margin-bottom: 20px; }
+
+.hentry {
+  clear: both;
+  display: table;
+  margin-bottom: 50px; }
+  .hentry .entry-header, .hentry .entry-content {
+    display: table-cell;
+    vertical-align: middle;
+    float: none;
+    width: 50%; }
+  .hentry .entry-content.full-width-entry {
+    width: 100%; }
+  .hentry .entry-header {
+    text-align: center; }
+    .hentry .entry-header:hover .post-thumbnail-wrap > img {
+      transform: scale(1.1); }
+    .hentry .entry-header .post-thumbnail-wrap {
+      overflow: hidden; }
+  .hentry .post-title {
+    font-weight: 300;
+    line-height: 45px;
+    margin-bottom: 20px;
+    color: #666; }
+    .hentry .post-title:after {
+      display: inherit;
+      content: '';
+      border: 1px solid #f0ad4e;
+      width: 50px;
+      margin: 10px 0; }
+    .hentry .post-title a:hover {
+      color: #f0ad4e; }
+  .hentry .index-post-meta {
+    margin-bottom: 20px; }
+  .hentry .author, .hentry .categories-list {
+    display: inline; }
+  .hentry .categories-list:before {
+    content: " - "; }
+
+.categories-list .category-label:after {
+  content: ", "; }
+
+.categories-list .category-label:last-child:after {
+  content: " "; }
+
+.pagination {
+  width: 100%;
+  text-align: center; }
+  .pagination a, .pagination .current {
+    padding: 0 5px 5px;
+    margin: 0 15px; }
+  .pagination .prev {
+    float: left; }
+    .pagination .prev:before {
+      content: "\00ab  "; }
+  .pagination .next {
+    float: right; }
+    .pagination .next:after {
+      content: "  \00bb"; }
+  .pagination .current {
+    border-bottom: 2px solid #f0ad4e; }
 
 /*# sourceMappingURL=generated-style.css.map */

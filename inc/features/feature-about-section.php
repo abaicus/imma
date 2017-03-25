@@ -39,7 +39,6 @@ function imma_about_customize_register( $wp_customize ) {
 		'section' => 'imma_about',
 		'priority' => 10,
 		'needsync' => true,
-		'include_admin_print_footer' => true,
 	) ) );
 	$default = '';
 	if ( has_post_thumbnail( $frontpage_id ) ) {

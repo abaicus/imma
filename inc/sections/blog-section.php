@@ -70,22 +70,20 @@ function imma_display_blog_content(){
 					<div class="<?php esc_attr_e( $class_to_add ); ?> col-sm-12 col-xs-12 blog-post-content">
 						<h2 class="post-title"><?php the_title(); ?></h2>
 
-						<p class="text-content">
+						<div class="text-content">
 							<?php the_excerpt(); ?>
-						</p>
+						</div>
 
-						<a href="<?php the_permalink(); ?>" class="btn btn-yellow "><?php esc_html_e('Read more', 'imma'); ?></a>
 					</div>
 					<?php
 				} else { ?>
 					<div class="<?php esc_attr_e( $class_to_add ); ?> col-sm-12 col-xs-12 blog-post-content">
 						<h2 class="post-title"><?php the_title(); ?></h2>
 
-						<p class="text-content">
+						<div class="text-content">
 							<?php the_excerpt(); ?>
-						</p>
+						</div>
 
-						<a href="<?php the_permalink(); ?>" class="btn btn-yellow "><?php esc_html_e('Read more', 'imma'); ?></a>
 					</div>
 					<?php
 					if( has_post_thumbnail() ){ ?>

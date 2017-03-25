@@ -114,7 +114,11 @@ function imma_register_video_partials( $wp_customize ) {
 }
 add_action( 'customize_register', 'imma_register_video_partials' );
 
-
+/**
+ * Render callback function for video text content.
+ *
+ * @return string
+ */
 function imma_video_text_callback() {
 	return get_theme_mod( 'imma_video_text' );
 }
