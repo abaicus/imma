@@ -243,7 +243,7 @@ textarea
   padding: 100px 0 100px 50px
 
 .more-link
-  margin-top: 50px
+  margin-top: 24px
   display: table
   clear: both
 
@@ -261,3 +261,12 @@ textarea
 .customize-partial-edit-shortcut-imma_video_content
   right: 5px
   top: 5px
+
+.entry-footer
+  display: block
+  span:not(:last-child)
+    &:after
+      content: '|'
+      padding: 0 5px
+    &:last-child
+      content: ''

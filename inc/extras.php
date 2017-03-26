@@ -245,14 +245,17 @@ function imma_page_header( $page_type ) {
 			$image      = get_header_image();
 			$page_title = get_the_archive_title();
 			break;
-
 		case 'single':
-
 			$image      = get_the_post_thumbnail_url();
 			if( empty( $image ) ) {
 				$image = get_header_image();
 			}
 			$page_title = get_the_title();
+			break;
+		case 'search':
+			$image = get_header_image();
+			$page_title = sprintf( esc_html__( 'Search Results for: %s', 'imma' ), '<span>' . get_search_query() . '</span>' );
+			break;
 
 	}
 	?>

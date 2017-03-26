@@ -71,8 +71,21 @@ function imma_customize_register( $wp_customize ) {
 		'type'     => 'checkbox',
 		'label'    => esc_html__( 'Disable header section on archive', 'imma' ),
 		'section'  => 'imma_blog_index',
-		'priority' => 10,
+		'priority' => 15,
 	) );
+
+	$wp_customize->add_setting( 'imma_search_title_hide', array(
+		'sanitize_callback' => 'imma_sanitize_checkbox',
+		'default'           => false,
+	) );
+	$wp_customize->add_control( 'imma_search_title_hide', array(
+		'type'     => 'checkbox',
+		'label'    => esc_html__( 'Disable header section on search', 'imma' ),
+		'section'  => 'imma_blog_index',
+		'priority' => 20,
+	) );
+
+
 
 
 }
