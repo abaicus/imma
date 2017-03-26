@@ -6,6 +6,7 @@
   top: 0
   width: 100%
   z-index: 2
+  font-weight: 400
 
 .admin-bar
   .site-header
@@ -152,6 +153,7 @@
     color: $textColor
     padding: 10px 40px
 
+
   .current-menu-item,
   .current-menu-ancestor
     a
@@ -220,6 +222,8 @@
           &:hover
             &:after
               content: "-"
+        &:before
+          @include no-list-style-type
 
     ul
       ul
@@ -242,6 +246,8 @@
               color: $textColor
               opacity: 1
               right: 5px
+            &:before
+              @include no-list-style-type
             &:hover,
             &.focus
               > ul

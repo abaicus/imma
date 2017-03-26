@@ -22,22 +22,11 @@ function imma_customize_register( $wp_customize ) {
 	) );
 
 	$selective_refresh = isset( $wp_customize->selective_refresh ) ? true : false;
-	//Blog section
-	$wp_customize->add_section( 'imma_blog_index', array(
-		'title'    => esc_html__( 'Blog', 'imma' ),
-		'priority' => 50,
-	) );
 
-	$wp_customize->add_setting( 'imma_blog_index_title_hide', array(
-		'sanitize_callback' => 'imma_sanitize_checkbox',
-		'default'           => false,
-	) );
-	$wp_customize->add_control( 'imma_blog_index_title_hide', array(
-		'type'     => 'checkbox',
-		'label'    => esc_html__( 'Disable section', 'imma' ),
-		'section'  => 'imma_blog_index',
-		'priority' => 1,
-	) );
+	if( $selective_refresh === true ){
+		$wp_customize->get_setting( 'header_image' )->transport = 'postMessage';
+		$wp_customize->get_setting( 'header_image_data' )->transport = 'postMessage';
+	}
 
 	$default = __( 'Edit this title in customizer', 'imma' );
 	$wp_customize->add_setting( 'imma_blog_index_title', array(
@@ -47,9 +36,48 @@ function imma_customize_register( $wp_customize ) {
 	) );
 	$wp_customize->add_control( 'imma_blog_index_title', array(
 		'label'    => __( 'Title', 'imma' ),
-		'section'  => 'imma_blog_index',
+		'section'  => 'title_tagline',
 		'priority' => 5,
 	) );
+
+	//Advanced options
+	$wp_customize->add_section( 'imma_blog_index', array(
+		'title'    => esc_html__( 'Advanced options', 'imma' ),
+		'priority' => 50,
+	) );
+
+	$sections = array(
+		esc_html__('blog_index','imma') => array( false, true),
+		esc_html__('single','imma') => array( false, false),
+		esc_html__('archive','imma') => array( false, false),
+		esc_html__( 'search','imma') => array( false, false), );
+	$priority = 5;
+	foreach ( $sections as $section => $default ){
+		$wp_customize->add_setting( 'imma_'.$section.'_header_hide', array(
+			'sanitize_callback' => 'imma_sanitize_checkbox',
+			'default'           => $default[0],
+		) );
+
+		$wp_customize->add_control( 'imma_'.$section.'_header_hide', array(
+			'type'     => 'checkbox',
+			'label'    => sprintf( esc_html__( 'Disable header section on %s', 'imma' ), esc_html( $section ) ),
+			'section'  => 'imma_blog_index',
+			'priority' => $priority,
+		) );
+		$priority += 5;
+		$wp_customize->add_setting( 'imma_'.$section.'_sidebar_hide', array(
+			'sanitize_callback' => 'imma_sanitize_checkbox',
+			'default'           => $default[1],
+		) );
+		$wp_customize->add_control( 'imma_'.$section.'_sidebar_hide', array(
+			'type'     => 'checkbox',
+			'label'    => sprintf( esc_html__( 'Disable sidebar on %s', 'imma' ), esc_html( $section ) ),
+			'section'  => 'imma_blog_index',
+			'priority' => $priority,
+		) );
+		$priority += 5;
+	}
+
 }
 add_action( 'customize_register', 'imma_customize_register' );
 
@@ -68,6 +96,12 @@ function imma_register_generic_partials( $wp_customize ){
 		'settings'        => 'imma_blog_index_title',
 		'render_callback' => 'imma_blog_index_title_render_callback',
 	) );
+
+	$wp_customize->selective_refresh->add_partial( 'header_image', array(
+		'selector' => '.blog-title-css',
+		'settings' => 'header_image',
+		'render_callback' => 'imma_blog_image_selective_refresh',
+	));
 }
 add_action( 'customize_register', 'imma_register_generic_partials' );
 
@@ -91,9 +125,28 @@ if ( ! function_exists( 'imma_sanitize_checkbox' ) ) :
 	}
 endif;
 
+
+/**
+ * Callback for blog image selective refresh
+ */
+function imma_blog_image_selective_refresh() {
+	$header_image = get_header_image();
+	if ( empty( $header_image ) ) {
+		$page_for_posts = get_option( 'page_for_posts' );
+		$header_image = wp_get_attachment_url( get_post_thumbnail_id( $page_for_posts ) );
+	} ?>
+	<style class="imma-blog-title-css">
+		.shop-entry-header {
+			background-image: url(<?php echo ! empty( $header_image ) ? esc_url( $header_image ) : 'none' ?>) !important;
+		}
+	</style>
+	<?php
+}
+
+
 /**
  * Render callback for blog index title selective refresh
  */
 function imma_blog_index_title_render_callback() {
-	return get_theme_mod( 'imma_blog_index_title_render_callback' );
+	return get_theme_mod( 'imma_blog_index_title' );
 }

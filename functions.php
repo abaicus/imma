@@ -84,7 +84,14 @@ function imma_setup() {
 		'header-text' => array( 'site-title', 'site-description' ),
 	) );
 
-	add_theme_support( 'header-image' );
+	$args = array(
+		'default-image'      => current_user_can( 'edit_posts' ) ? get_template_directory_uri() . '/img/blog_default.jpg' : '',
+		'width'              => 1000,
+		'height'             => 500,
+		'flex-width'         => true,
+		'flex-height'        => true,
+	);
+    add_theme_support( 'custom-header', $args );
 
 		// Image sizes.
 	add_image_size( 'imma-portfolio', 560, 380, true );
@@ -183,6 +190,16 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+
+/**
+ * Filter the front page template so it's bypassed entirely if the user selects
+ * to display blog posts on their homepage instead of a static page.
+ */
+function imma_filter_front_page_template( $template ) {
+	return is_home() ? '' : $template;
+}
+add_filter( 'frontpage_template', 'imma_filter_front_page_template' );
 
 /**
  * Define Allowed Files to be included.

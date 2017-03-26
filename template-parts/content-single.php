@@ -11,12 +11,12 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<?php
-	$imma_blog_single_header_hide = get_theme_mod( 'imma_blog_single_header_hide', false );
+	$imma_single_header_hide = get_theme_mod( 'imma_single_header_hide', false );
 	?>
 
-	<div class="entry-content col-sm-12 col-xs-12 blog-post-content <?php echo esc_attr( $class_to_add ); ?>">
+	<div class="entry-content col-sm-12 col-xs-12 blog-post-content">
 		<?php
-		if ( (bool) $imma_blog_single_header_hide === true ) { ?>
+		if ( (bool) $imma_single_header_hide === true ) { ?>
 			<h2 class="post-title"><?php the_title(); ?></a></h2>
 			<?php imma_get_post_meta();
 		}
