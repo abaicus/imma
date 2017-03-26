@@ -8,12 +8,11 @@
  */
 
 get_header();
-$imma_blog_single_header_hide = get_theme_mod( 'imma_blog_single_header_hide', false );
-if ( (bool) $imma_blog_single_header_hide === false ) {
-	imma_page_header( 'single' );
-}
+imma_page_header( 'single', 'imma_single_header_hide' );
+
+$imma_single_sidebar_hide = get_theme_mod( 'imma_single_sidebar_hide', false );
 $has_sidebar  = is_active_sidebar( 'sidebar-1' );
-$class_to_add = $has_sidebar ? 'col-md-8 col-sm-12' : 'col-xs-12'; ?>
+$class_to_add = $has_sidebar && !$imma_single_sidebar_hide ? 'col-md-8 col-sm-12' : 'col-xs-12'; ?>
 	<div class="container">
 		<div class="row">
 
@@ -38,7 +37,10 @@ $class_to_add = $has_sidebar ? 'col-md-8 col-sm-12' : 'col-xs-12'; ?>
 
 				</main><!-- #main -->
 			</div><!-- #primary -->
-			<?php get_sidebar(); ?>
+			<?php
+			if( (bool) $imma_single_sidebar_hide !== true ){
+				get_sidebar();
+			} ?>
 		</div>
 	</div>
 <?php

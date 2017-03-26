@@ -8,12 +8,11 @@
  */
 
 get_header();
-$imma_search_title_hide = get_theme_mod( 'imma_search_title_hide', false );
-if ( (bool) $imma_search_title_hide === false ) {
-	imma_page_header( 'search' );
-}
+$imma_search_header_hide = get_theme_mod( 'imma_search_header_hide', false );
+imma_page_header( 'search', 'imma_search_header_hide' );
+$imma_search_sidebar_hide = get_theme_mod( 'imma_search_sidebar_hide', false );
 $has_sidebar  = is_active_sidebar( 'sidebar-1' );
-$class_to_add = $has_sidebar ? 'col-md-8 col-sm-12' : 'col-xs-12'; ?>
+$class_to_add = $has_sidebar && ! $imma_search_sidebar_hide ? 'col-md-8 col-sm-12' : 'col-xs-12'; ?>
 
 	<div class="container">
 		<div class="row">
@@ -23,7 +22,7 @@ $class_to_add = $has_sidebar ? 'col-md-8 col-sm-12' : 'col-xs-12'; ?>
 
 					<?php
 					if ( have_posts() ) :
-						if ( $imma_search_title_hide === true ) { ?>
+						if ( $imma_search_header_hide === true ) { ?>
 							<header class="page-header">
 								<h1 class="page-title"><?php printf( esc_html__( 'Search Results for: %s', 'imma' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
 							</header><!-- .page-header -->
@@ -52,7 +51,10 @@ $class_to_add = $has_sidebar ? 'col-md-8 col-sm-12' : 'col-xs-12'; ?>
 
 				</main><!-- #main -->
 			</section><!-- #primary -->
-			<?php get_sidebar(); ?>
+			<?php
+			if( (bool)$imma_search_sidebar_hide !== true ){
+				get_sidebar();
+			} ?>
 		</div>
 	</div>
 <?php

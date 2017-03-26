@@ -169,7 +169,7 @@ function imma_display_section_head( $title, $subtitle ) {
  * Excerpt length.
  */
 function imma_excerpt_length( $length ) {
-	return 100;
+	return 60;
 }
 
 add_filter( 'excerpt_length', 'imma_excerpt_length', 999 );
@@ -196,7 +196,7 @@ add_filter( 'excerpt_more', 'imma_excerpt_more' );
 /**
  *
  */
-function imma_page_header( $page_type ) {
+function imma_page_header( $page_type, $show_option ) {
 	switch ( $page_type ) {
 		case 'shop':
 			$category = get_queried_object();
@@ -257,6 +257,12 @@ function imma_page_header( $page_type ) {
 			$page_title = sprintf( esc_html__( 'Search Results for: %s', 'imma' ), '<span>' . get_search_query() . '</span>' );
 			break;
 
+	}
+
+	$default = !empty( $image ) || !empty ( $page_title );
+	$hide = get_theme_mod( $show_option , !$default );
+	if( $hide === true ){
+		return;
 	}
 	?>
 	<div class="shop-entry-header" <?php if ( ! empty( $image ) ) {
