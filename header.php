@@ -29,14 +29,18 @@
 		$transparent_background = false;
 		if ( is_front_page() && is_home() ) {
 			// Default homepage
-			$transparent_background = false;
+			$transparent_background = get_theme_mod( 'imma_blog_index_title_hide', false );
 		} elseif ( is_front_page() ) {
 			// static homepage
 			$transparent_background = true;
 		} elseif ( is_home() ) {
 			// blog page
 			$transparent_background = ! get_theme_mod( 'imma_blog_index_title_hide', false );
-		} ?>
+		} elseif ( is_single() ){
+			$transparent_background = ! get_theme_mod( 'imma_blog_single_header_hide', false );
+		} elseif( is_archive() ) {
+			$transparent_background = ! get_theme_mod( 'imma_blog_archive_header_hide', false );
+		}?>
 		<header id="masthead" class="site-header <?php echo $transparent_background ? 'transparent-header' : ''; ?>" role="banner">
 			<div class="container header-container">
 				<div class="site-header-main">

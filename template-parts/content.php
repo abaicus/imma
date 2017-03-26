@@ -31,10 +31,12 @@
 		<?php
 
 		$title = get_the_title();
-		if ( ! empty( $title ) ) {
-			?>
-			<h2 class="post-title"><a href="<?php the_permalink(); ?>"><?php echo esc_html( $title ); ?></a></h2>
-		<?php }
+		if ( ! empty( $title ) ) { ?>
+			<h2 class="post-title">
+				<a href="<?php the_permalink(); ?>"><?php echo esc_html( $title ); ?></a>
+			</h2>
+			<?php
+		}
 
 		imma_get_post_meta();
 		?>

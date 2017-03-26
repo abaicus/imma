@@ -22,22 +22,6 @@ function imma_customize_register( $wp_customize ) {
 	) );
 
 	$selective_refresh = isset( $wp_customize->selective_refresh ) ? true : false;
-	//Blog section
-	$wp_customize->add_section( 'imma_blog_index', array(
-		'title'    => esc_html__( 'Blog', 'imma' ),
-		'priority' => 50,
-	) );
-
-	$wp_customize->add_setting( 'imma_blog_index_title_hide', array(
-		'sanitize_callback' => 'imma_sanitize_checkbox',
-		'default'           => false,
-	) );
-	$wp_customize->add_control( 'imma_blog_index_title_hide', array(
-		'type'     => 'checkbox',
-		'label'    => esc_html__( 'Disable section', 'imma' ),
-		'section'  => 'imma_blog_index',
-		'priority' => 1,
-	) );
 
 	$default = __( 'Edit this title in customizer', 'imma' );
 	$wp_customize->add_setting( 'imma_blog_index_title', array(
@@ -47,9 +31,50 @@ function imma_customize_register( $wp_customize ) {
 	) );
 	$wp_customize->add_control( 'imma_blog_index_title', array(
 		'label'    => __( 'Title', 'imma' ),
+		'section'  => 'title_tagline',
+		'priority' => 5,
+	) );
+
+	//Advanced options
+	$wp_customize->add_section( 'imma_blog_index', array(
+		'title'    => esc_html__( 'Advanced options', 'imma' ),
+		'priority' => 50,
+	) );
+
+	$wp_customize->add_setting( 'imma_blog_index_title_hide', array(
+		'sanitize_callback' => 'imma_sanitize_checkbox',
+		'default'           => false,
+	) );
+	$wp_customize->add_control( 'imma_blog_index_title_hide', array(
+		'type'     => 'checkbox',
+		'label'    => esc_html__( 'Disable header section on blog', 'imma' ),
 		'section'  => 'imma_blog_index',
 		'priority' => 5,
 	) );
+
+	$wp_customize->add_setting( 'imma_blog_single_header_hide', array(
+		'sanitize_callback' => 'imma_sanitize_checkbox',
+		'default'           => false,
+	) );
+	$wp_customize->add_control( 'imma_blog_single_header_hide', array(
+		'type'     => 'checkbox',
+		'label'    => esc_html__( 'Disable header section on single', 'imma' ),
+		'section'  => 'imma_blog_index',
+		'priority' => 10,
+	) );
+
+	$wp_customize->add_setting( 'imma_blog_archive_header_hide', array(
+		'sanitize_callback' => 'imma_sanitize_checkbox',
+		'default'           => false,
+	) );
+	$wp_customize->add_control( 'imma_blog_archive_header_hide', array(
+		'type'     => 'checkbox',
+		'label'    => esc_html__( 'Disable header section on archive', 'imma' ),
+		'section'  => 'imma_blog_index',
+		'priority' => 10,
+	) );
+
+
 }
 add_action( 'customize_register', 'imma_customize_register' );
 
