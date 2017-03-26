@@ -13,13 +13,11 @@ $font-size-body: 16px !default
 
 html, body
   height: 100%
-  font-family: “Segoe UI”, sans-serif
 
 .features, .ribbon, .product, .portfolio, .stats, .blog-section, .clients, .video
   padding: 100px 0
 
 html
-  font-family: sans-serif
   line-height: 1.15
   -ms-text-size-adjust: 100%
   -webkit-text-size-adjust: 100%
@@ -29,11 +27,13 @@ html
 body
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif
   font-size: 16px
-  line-height: 1.5
+  font-weight: 300
+  line-height: 32px
 
-h1, h2, h3
+h1, h2, h3, h4, h5, h6
   margin-top: 0
   margin-bottom: 8px
+  font-weight: 300
 
 h1
   font-size: $font-size-h1
@@ -71,35 +71,157 @@ a:hover
   left: 0
   padding: 20px
 
-//  Buttons
 
-.btn
-  border-radius: 0
 
-.btn-yellow
+/*--------------------- Elements ---------------------*/
+html
+  box-sizing: border-box
+
+
+*,
+*:before,
+*:after  /* Inherit box-sizing to make it easier to change the property for components that leverage other behavior see http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
+  box-sizing: inherit
+
+
+body
+  background: #fff /* Fallback for when there is no custom background color defined. */
+
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after
+  content: ""
+
+
+blockquote,
+q
+  quotes: "" ""
+
+
+hr
+  background-color: #ccc
+  border: 0
+  height: 1px
+  margin-bottom: 1.5em
+
+
+ul,
+ol
+  margin: 0 0 1.5em 3em
+
+
+ul
+  list-style-type: none
+  padding: 0
+  margin: 0
+
+ul > li:before
+  content: "\00bb"
+  margin-right: 10px
+
+
+ol
+  list-style: decimal
+
+
+li > ul,
+li > ol
+  margin-bottom: 0
+  margin-left: 15px
+
+
+dt
+  font-weight: bold
+
+
+dd
+  margin: 0 1.5em 1.5em
+
+
+img
+  height: auto /* Make sure images are scaled correctly. */
+  max-width: 100% /* Adhere to container width. */
+
+
+figure
+  margin: 1em 0 /* Extra wide images within figure tags don't overflow the content area. */
+
+
+table
+  margin: 0 0 1.5em
+  width: 100%
+/*--------------------- /Elements ---------------------*/
+
+/*--------------------- Forms ---------------------*/
+textarea
+  width: 100%
+
+select
+  border: 1px solid #ccc
   font-size: $font-size-body
+  padding: 6px 12px
+  color: $textColor
+
+button,
+a.btn,
+input[type="button"],
+input[type="reset"],
+input[type="submit"]
+  border: 1px solid $accentColor
+  border-radius: 0
+  background: $accentColor
   color: $buttonText
-  background-color: $accentColor
-  border-color: $accentColor
+  font-size: $font-size-body
+  padding: 6px 12px
+  &:hover
+    color: $buttonText
+    background-color: $accentIntense
+    border-color: $accentIntense
+  &:focus, &:active
+    outline: none
+  &.btn-outline
+    color: $accentColor
+    background-color: transparent
+    &:hover
+      color: $buttonText
+      background-color: $accentColor
+      border-color: $accentColor
+  &.btn-lg
+    font-size: 20px
+    padding: 12px 24px
 
-.btn-yellow:hover
+.btn.focus, .btn:focus, .btn:hover
   color: $buttonText
-  background-color: $accentIntense
-  border-color: $accentIntense
+  text-decoration: none
 
-.btn-yellow.btn-outline
-  color: $accentColor
-  background-color: transparent
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="range"],
+input[type="date"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="color"],
+textarea
+  font-size: $font-size-body
+  font-weight: 300
+  padding: 6px 12px
+  color: $textColor
+  border: 1px solid #ccc
+  border-radius: 3px
+  &:focus
+    outline-color: $accentColor
 
-.btn-outline:hover
-  color: $buttonText
-  background-color: $accentColor
-  border-color: $accentColor
-
-.btn-lg
-  font-size: 20px
-  padding: 12px 24px
-
+/*--------------------- /Forms ---------------------*/
 .row-centered
   text-align: center
 
@@ -115,7 +237,10 @@ a:hover
 
 //Blog?!
 #primary
-  padding: 100px 0
+  padding: 100px 20px
+
+#secondary
+  padding: 100px 0 100px 50px
 
 .more-link
   margin-top: 50px

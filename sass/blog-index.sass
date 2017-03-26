@@ -28,6 +28,9 @@
       font-weight: 300
       margin-bottom: 20px
 
+.widget-title
+  &:after
+    @include title-line-after
 
 .hentry
   clear: both
@@ -89,3 +92,7 @@
       content: "  \00bb"
   .current
     border-bottom: 2px solid $accentColor
+
+@media (max-width: 991px)
+  .widget-area
+    display: none

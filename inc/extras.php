@@ -286,7 +286,12 @@ function imma_page_header( $page_type ) {
 }
 
 function imma_get_post_meta() {
-	$post_author = get_post_field( 'post_author', get_the_ID() );
+	$pid = get_the_ID();
+	if( empty( $pid ) ){
+		return;
+	}
+
+	$post_author = get_post_field( 'post_author', $pid );
 	$author_name = get_the_author_meta( 'user_nicename', $post_author );
 	?>
 	<div class="index-post-meta">
@@ -294,7 +299,7 @@ function imma_get_post_meta() {
 			class="author"><?php printf( esc_html__( 'By %1$s, %2$s', 'imma' ), sprintf( '<a href="%2$s" title="%1$s"><b>%1$s</b></a>', esc_html( $author_name ) , esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) ), sprintf( esc_html__( '%1$s ago %2$s', 'imma' ), sprintf( '<a href="%2$s"><time>%1$s</time>', esc_html( human_time_diff( get_the_time( 'U' ), current_time( 'timestamp' ) ) ), esc_url( get_permalink() ) ), '</a>' ) ); ?></div>
 
 		<?php
-		$categories = get_the_category( $post->ID );
+		$categories = get_the_category( $pid );
 		if ( ! empty( $categories ) ) { ?>
 			<div class="categories-list">
 				<?php foreach ( $categories as $category ) { ?>
